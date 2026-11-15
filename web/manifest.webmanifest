@@ -1,0 +1,17 @@
+{
+  "name": "GEOREDE",
+  "short_name": "GEOREDE",
+  "description": "Os teus aparelhos no mapa, com zonas e avisos.",
+  "lang": "pt-PT",
+  "id": "/mapa",
+  "start_url": "/mapa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E1420",
+  "theme_color": "#1E5BB8",
+  "icons": [
+    { "src": "/icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icones/icone-mascara-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

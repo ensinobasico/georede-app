@@ -1,0 +1,13 @@
+{
+  "appId": "com.georede.app",
+  "appName": "GEOREDE",
+  "webDir": "www",
+  "appendUserAgent": "GEOREDE-Android",
+  "server": {
+    "url": "https://app.georede.com/mapa",
+    "allowNavigation": ["app.georede.com", "auth.georede.com"]
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.georede.app",
+      "sha256_cert_fingerprints": [
+        "0A:F7:3D:A8:48:10:EE:98:C9:9E:DD:9B:C1:3A:9C:36:CE:EA:BE:35:F8:15:12:DB:33:E4:E2:94:2B:B8:94:AB"
+      ]
+    }
+  }
+]

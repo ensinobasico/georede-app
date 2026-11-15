@@ -1,0 +1,9 @@
+node_modules/
+android/android/
+*.jks
+*.keystore
+*.aab
+*.apk
+google-services.json
+local.properties
+.env*

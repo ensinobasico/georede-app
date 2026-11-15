@@ -1,0 +1,3 @@
+maplibre-gl.js: https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js
+maplibre-gl.css: https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css
+basemaps.js: https://unpkg.com/@protomaps/basemaps@5.7.2/dist/basemaps.js
