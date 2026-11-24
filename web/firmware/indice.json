@@ -1,0 +1,494 @@
+{
+ "alvos": {
+  "canaryone": {
+   "bytes": 706193,
+   "ficheiro": "firmware-canaryone-2.7.26.54e0d8d-ota.zip",
+   "md5": "e1caed0001167861bb4cf70512387bc4",
+   "modelo": 29,
+   "nome": "Canary One",
+   "sha256": "300f4a578d7a44042e8fd262e6353d3fa4e928c4dfdfb0df5f1503480833701e",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-canaryone-2.7.26.54e0d8d-ota.zip"
+  },
+  "feather_diy": {
+   "bytes": 725285,
+   "ficheiro": "firmware-feather_diy-2.7.26.54e0d8d-ota.zip",
+   "md5": "a66aba6d40f43baed037139022c1924e",
+   "modelo": null,
+   "nome": "feather_diy",
+   "sha256": "b4a32e696be074748f1e8226ff5a6ae32b0f17f62316bc58c279d1880632f555",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-feather_diy-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-node-t096": {
+   "bytes": 735565,
+   "ficheiro": "firmware-heltec-mesh-node-t096-2.7.26.54e0d8d-ota.zip",
+   "md5": "9024cf7d391fb7690fc0980c3f22d084",
+   "modelo": 127,
+   "nome": "Heltec Mesh Node 096",
+   "sha256": "af85c0ed16057ecd8266b7c844a13c29dccd95eb710521855b6136d7cd9a5643",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-node-t096-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-node-t1": {
+   "bytes": 733181,
+   "ficheiro": "firmware-heltec-mesh-node-t1-2.7.26.54e0d8d-ota.zip",
+   "md5": "ab10a7ea72976da0e7678e1e8b823046",
+   "modelo": 133,
+   "nome": "Heltec Mesh Node T1",
+   "sha256": "9f683403f49b31b5b2cd3ee4412028b33cad3c9f7bad24217d5430493e928577",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-node-t1-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-node-t114": {
+   "bytes": 734689,
+   "ficheiro": "firmware-heltec-mesh-node-t114-2.7.26.54e0d8d-ota.zip",
+   "md5": "9b490ce0e5f9d6379cdfbbc8bef02be3",
+   "modelo": 69,
+   "nome": "Heltec Mesh Node T114",
+   "sha256": "d3fa90f6d0d0a2b94a7ef325cc3c3f1456731546f496921418c643ae990d513c",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-node-t114-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-pocket-10000": {
+   "bytes": 702754,
+   "ficheiro": "firmware-heltec-mesh-pocket-10000-2.7.26.54e0d8d-ota.zip",
+   "md5": "ec108ed6044a341ed4d5515dbcd0a11b",
+   "modelo": 94,
+   "nome": "Heltec Mesh Pocket",
+   "sha256": "f8fcbe8be6f07bd527611ba899e626bb2f5e389a51b24d6b5a1ab90e8fa3a500",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-pocket-10000-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-pocket-10000-inkhud": {
+   "bytes": 649813,
+   "ficheiro": "firmware-heltec-mesh-pocket-10000-inkhud-2.7.26.54e0d8d-ota.zip",
+   "md5": "dd9aa174103759f9dedd5651d4eced47",
+   "modelo": 94,
+   "nome": "Heltec Mesh Pocket",
+   "sha256": "5eb90bd8dd5562772cfb0471229c476c8c101bbaa8e7bba9e83f5faf30114e1a",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-pocket-10000-inkhud-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-pocket-5000": {
+   "bytes": 702749,
+   "ficheiro": "firmware-heltec-mesh-pocket-5000-2.7.26.54e0d8d-ota.zip",
+   "md5": "85834eb9ba16f23be6a6f39befdfa4d3",
+   "modelo": 94,
+   "nome": "Heltec Mesh Pocket",
+   "sha256": "49f880eea47658365fc4a409b61837ad2ea1910e66b2d82f58c9810fcd15b72f",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-pocket-5000-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-pocket-5000-inkhud": {
+   "bytes": 649806,
+   "ficheiro": "firmware-heltec-mesh-pocket-5000-inkhud-2.7.26.54e0d8d-ota.zip",
+   "md5": "6d1461a40797aa3929f78941cfd4d8c6",
+   "modelo": 94,
+   "nome": "Heltec Mesh Pocket",
+   "sha256": "4e7e8c862b3b9e4fe6411cc403531d32d0121d7fd0a5091702369ec1ae72e540",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-pocket-5000-inkhud-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-solar": {
+   "bytes": 741221,
+   "ficheiro": "firmware-heltec-mesh-solar-2.7.26.54e0d8d-ota.zip",
+   "md5": "f6010e10521a0362afd5c17c2135c912",
+   "modelo": 108,
+   "nome": "Heltec MeshSolar",
+   "sha256": "3bb2d195dc6fbaae6bea02ff1f6fb99fe91959948398d40db7a628c1b0c121cf",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-solar-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-solar-eink": {
+   "bytes": 731875,
+   "ficheiro": "firmware-heltec-mesh-solar-eink-2.7.26.54e0d8d-ota.zip",
+   "md5": "67e1b544a88eddc9ffb415e3647f074d",
+   "modelo": null,
+   "nome": "heltec-mesh-solar-eink",
+   "sha256": "d00d2b263a6d9fecc87589e6b9fe9dec1da7d8f126fcd936087692cfa4e60935",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-solar-eink-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-solar-inkhud": {
+   "bytes": 698319,
+   "ficheiro": "firmware-heltec-mesh-solar-inkhud-2.7.26.54e0d8d-ota.zip",
+   "md5": "ee1696fc567205bd58536246a5f87f34",
+   "modelo": null,
+   "nome": "heltec-mesh-solar-inkhud",
+   "sha256": "260cf99a7b1b6e9c53328f0e37961691268b42fdca9ad0945073f247182ae4fb",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-solar-inkhud-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-solar-oled": {
+   "bytes": 741331,
+   "ficheiro": "firmware-heltec-mesh-solar-oled-2.7.26.54e0d8d-ota.zip",
+   "md5": "f7ef866a1ee0fa44bf4e8d6167a047e0",
+   "modelo": null,
+   "nome": "heltec-mesh-solar-oled",
+   "sha256": "863277d816c3c70294abec9244537d795c721bb39f77d8cd1597961c9365a4d8",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-solar-oled-2.7.26.54e0d8d-ota.zip"
+  },
+  "heltec-mesh-solar-tft": {
+   "bytes": 742989,
+   "ficheiro": "firmware-heltec-mesh-solar-tft-2.7.26.54e0d8d-ota.zip",
+   "md5": "a49cca7fa153807077544a819b809684",
+   "modelo": null,
+   "nome": "heltec-mesh-solar-tft",
+   "sha256": "643b6a51f675f83d85324954c558dbb8daaafc190bf1b2bf5a63520941c5c30b",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-heltec-mesh-solar-tft-2.7.26.54e0d8d-ota.zip"
+  },
+  "muzi-base": {
+   "bytes": 745457,
+   "ficheiro": "firmware-muzi-base-2.7.26.54e0d8d-ota.zip",
+   "md5": "45ed0d44288e3fa082139088f12dbcc1",
+   "modelo": 93,
+   "nome": "muzi BASE",
+   "sha256": "961cb6e8cb6e0e32c1e44bacdff8318c276732832f15b97adb7a5e4425290585",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-muzi-base-2.7.26.54e0d8d-ota.zip"
+  },
+  "nano-g2-ultra": {
+   "bytes": 728905,
+   "ficheiro": "firmware-nano-g2-ultra-2.7.26.54e0d8d-ota.zip",
+   "md5": "6b288f0de89bea00ced6cf00a122513b",
+   "modelo": 18,
+   "nome": "Nano G2 Ultra",
+   "sha256": "723f64772d4f30f2c88600cb5370af2fb1dd429f41f18d41949b1b79fa1bfe9b",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-nano-g2-ultra-2.7.26.54e0d8d-ota.zip"
+  },
+  "nrf52_promicro_diy_tcxo": {
+   "bytes": 767685,
+   "ficheiro": "firmware-nrf52_promicro_diy_tcxo-2.7.26.54e0d8d-ota.zip",
+   "md5": "e70a2cc8fc95db7ffb50aa827efe1b0f",
+   "modelo": 63,
+   "nome": "NRF52 Pro-micro DIY",
+   "sha256": "b6d8f0e6d814f6cb34b98aa60d936ed34a1bd7961df8838ceafeaf10c116d881",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-nrf52_promicro_diy_tcxo-2.7.26.54e0d8d-ota.zip"
+  },
+  "r1-neo": {
+   "bytes": 583771,
+   "ficheiro": "firmware-r1-neo-2.7.26.54e0d8d-ota.zip",
+   "md5": "fe63826cf9597fdd8b593859f2170831",
+   "modelo": 101,
+   "nome": "muzi R1 Neo",
+   "sha256": "2a71fe57e35fc8990292df2a1f547b92ec2152b2a6bb079cae54d360d0a3f95e",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-r1-neo-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak2560": {
+   "bytes": 737569,
+   "ficheiro": "firmware-rak2560-2.7.26.54e0d8d-ota.zip",
+   "md5": "842c5854a9e16a74a717db34307c2bd7",
+   "modelo": 22,
+   "nome": "RAK WisMesh Repeater",
+   "sha256": "16e138cda137f3aa0e1bc5bf6edf5ded33411e37787d0f14cc463cece8895c25",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak2560-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak3401-1watt": {
+   "bytes": 730057,
+   "ficheiro": "firmware-rak3401-1watt-2.7.26.54e0d8d-ota.zip",
+   "md5": "7c8d7a6828d110e8a5ddd70966fcd1b6",
+   "modelo": 117,
+   "nome": "RAK3401 1W",
+   "sha256": "bb100cdcf606781300b39e20583f7bfe91550c256433237a8d6023c3e9936443",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak3401-1watt-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak4631": {
+   "bytes": 759993,
+   "ficheiro": "firmware-rak4631-2.7.26.54e0d8d-ota.zip",
+   "md5": "95e5199639c17c20ea0da2cc23d8e846",
+   "modelo": 9,
+   "nome": "RAK WisBlock 4631",
+   "sha256": "0ff07b46c56e509e626313b84f43325ce4df90e6dce0569a78a1be6301e1b247",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak4631-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak4631_eink": {
+   "bytes": 742747,
+   "ficheiro": "firmware-rak4631_eink-2.7.26.54e0d8d-ota.zip",
+   "md5": "066a90bafaf456ed1eff00799981510b",
+   "modelo": null,
+   "nome": "rak4631_eink",
+   "sha256": "8eb6399475b17999278a03f04aed7bb7933c237265cd67f1d5f5f39698600152",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak4631_eink-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak4631_eth_gw": {
+   "bytes": 634107,
+   "ficheiro": "firmware-rak4631_eth_gw-2.7.26.54e0d8d-ota.zip",
+   "md5": "e1e106b9fca2fe9f5b99a2792751faef",
+   "modelo": null,
+   "nome": "rak4631_eth_gw",
+   "sha256": "abbd27bab3a11fa441727c5965999d4b000b4c5ac21318794cfc9737838c1d6b",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak4631_eth_gw-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak4631_nomadstar_meteor_pro": {
+   "bytes": 728555,
+   "ficheiro": "firmware-rak4631_nomadstar_meteor_pro-2.7.26.54e0d8d-ota.zip",
+   "md5": "f2f1659ab39c3b2ecbdd291bd216a1b3",
+   "modelo": 96,
+   "nome": "NomadStar Meteor Pro",
+   "sha256": "26f43737de1d9a548cfb96cb63339542e1b6e6c9cb96e24458615d082846000a",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak4631_nomadstar_meteor_pro-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak_wismeshtag": {
+   "bytes": 582051,
+   "ficheiro": "firmware-rak_wismeshtag-2.7.26.54e0d8d-ota.zip",
+   "md5": "744413345cb92341e630b7a8667d67f8",
+   "modelo": 105,
+   "nome": "RAK WisMesh Tag",
+   "sha256": "5e1abef1ea5b522ca814a1248b27f326b1886dac4570a1f2beaf3982b0f673de",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak_wismeshtag-2.7.26.54e0d8d-ota.zip"
+  },
+  "rak_wismeshtap": {
+   "bytes": 730039,
+   "ficheiro": "firmware-rak_wismeshtap-2.7.26.54e0d8d-ota.zip",
+   "md5": "1d97cc54bf306108af7390dc9f2e1b9c",
+   "modelo": 84,
+   "nome": "RAK WisMesh Tap",
+   "sha256": "d06413767802016b6ce0941ce759239dc366fce984adcf90f1ddb98659b9b7be",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-rak_wismeshtap-2.7.26.54e0d8d-ota.zip"
+  },
+  "seeed_solar_node": {
+   "bytes": 726667,
+   "ficheiro": "firmware-seeed_solar_node-2.7.26.54e0d8d-ota.zip",
+   "md5": "f69bd1d17b098bbe7d8b87e29b94b909",
+   "modelo": 95,
+   "nome": "Seeed SenseCAP Solar Node",
+   "sha256": "2ac49881958609918b0142741130f2ecbd7d83bc3f8007eec4be496130497b47",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-seeed_solar_node-2.7.26.54e0d8d-ota.zip"
+  },
+  "seeed_wio_tracker_L1": {
+   "bytes": 730379,
+   "ficheiro": "firmware-seeed_wio_tracker_L1-2.7.26.54e0d8d-ota.zip",
+   "md5": "c68827d249651d6373d22d42c6076aa4",
+   "modelo": 99,
+   "nome": "Seeed Wio Tracker L1",
+   "sha256": "2550ac5d0dc6e1cb8b559a354c9aefb5a546cb00700d22f73319c6c96bc4d746",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-seeed_wio_tracker_L1-2.7.26.54e0d8d-ota.zip"
+  },
+  "seeed_wio_tracker_L1_eink": {
+   "bytes": 740145,
+   "ficheiro": "firmware-seeed_wio_tracker_L1_eink-2.7.26.54e0d8d-ota.zip",
+   "md5": "a67a399d23659c088734f45f9a75d01a",
+   "modelo": 100,
+   "nome": "Seeed Wio Tracker L1 E-Ink",
+   "sha256": "d442629fafc7b099083e30e06d774f4d51371bc820a8b5839fbe4c5bfd2b02d5",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-seeed_wio_tracker_L1_eink-2.7.26.54e0d8d-ota.zip"
+  },
+  "seeed_wio_tracker_L1_eink-inkhud": {
+   "bytes": 682363,
+   "ficheiro": "firmware-seeed_wio_tracker_L1_eink-inkhud-2.7.26.54e0d8d-ota.zip",
+   "md5": "18d8e9157d99e3da4aa1aefff79f04b8",
+   "modelo": null,
+   "nome": "seeed_wio_tracker_L1_eink-inkhud",
+   "sha256": "9d8107cca25123e8209116ccf85f380f90b811fb01f3df11c3ed080e28d16884",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-seeed_wio_tracker_L1_eink-inkhud-2.7.26.54e0d8d-ota.zip"
+  },
+  "seeed_xiao_nrf52840_kit": {
+   "bytes": 724052,
+   "ficheiro": "firmware-seeed_xiao_nrf52840_kit-2.7.26.54e0d8d-ota.zip",
+   "md5": "09bc4425508bf419fb625c7c84395926",
+   "modelo": 88,
+   "nome": "Seeed Xiao NRF52840 Kit",
+   "sha256": "9a658f9174132cea0da37a337173a66b5b5c0717cc0d8e47f090a4f80b39ad2d",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-seeed_xiao_nrf52840_kit-2.7.26.54e0d8d-ota.zip"
+  },
+  "t-echo": {
+   "bytes": 743238,
+   "ficheiro": "firmware-t-echo-2.7.26.54e0d8d-ota.zip",
+   "md5": "04394ffa9b26fd32d9edbfc9670a548f",
+   "modelo": 7,
+   "nome": "LILYGO T-Echo",
+   "sha256": "5a25dde83cd6133afb6d01fa3ae6e343c687ad99abfe4f8856c849949c659e25",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-t-echo-2.7.26.54e0d8d-ota.zip"
+  },
+  "t-echo-inkhud": {
+   "bytes": 684857,
+   "ficheiro": "firmware-t-echo-inkhud-2.7.26.54e0d8d-ota.zip",
+   "md5": "a6f0e2bbeec66e49317e34aeaf6158ad",
+   "modelo": null,
+   "nome": "t-echo-inkhud",
+   "sha256": "23c424a4e0920dd1247b525084fe18d064ae8f7c4d5d15c6d5b3e7d3a02ed398",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-t-echo-inkhud-2.7.26.54e0d8d-ota.zip"
+  },
+  "t-echo-lite": {
+   "bytes": 735461,
+   "ficheiro": "firmware-t-echo-lite-2.7.26.54e0d8d-ota.zip",
+   "md5": "7c3a7a821241fc64fd8684d6f5d27848",
+   "modelo": 109,
+   "nome": "LILYGO T-Echo Lite",
+   "sha256": "51898016f11c655525b05dd4e909ea53c439656bacb10b30defb4fa959c132f7",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-t-echo-lite-2.7.26.54e0d8d-ota.zip"
+  },
+  "t-echo-plus": {
+   "bytes": 740949,
+   "ficheiro": "firmware-t-echo-plus-2.7.26.54e0d8d-ota.zip",
+   "md5": "953cba3a799d70453460c10a84c6ced0",
+   "modelo": 33,
+   "nome": "LILYGO T-Echo Plus",
+   "sha256": "7badfdeb9ab2f1b141a3bf1e70530a275400f20beae300e126b25bdb40fc0b1b",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-t-echo-plus-2.7.26.54e0d8d-ota.zip"
+  },
+  "t-impulse-plus": {
+   "bytes": 706061,
+   "ficheiro": "firmware-t-impulse-plus-2.7.26.54e0d8d-ota.zip",
+   "md5": "b39313b09c5fe8280ac1bc4b84677845",
+   "modelo": 135,
+   "nome": "LILYGO T-Impulse Plus",
+   "sha256": "48be25d62f78081f7ba87c12c0ca1838470e98f29a451679abac4303cc351658",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-t-impulse-plus-2.7.26.54e0d8d-ota.zip"
+  },
+  "thinknode_m1": {
+   "bytes": 736139,
+   "ficheiro": "firmware-thinknode_m1-2.7.26.54e0d8d-ota.zip",
+   "md5": "9cb7167b6951d428dc1c78adfbdabfb5",
+   "modelo": 89,
+   "nome": "ThinkNode M1",
+   "sha256": "c8b94ea4267b54e08f7ce6c29a14536ab4c26a79d480398a5f9f72d53f174fd9",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-thinknode_m1-2.7.26.54e0d8d-ota.zip"
+  },
+  "thinknode_m1-inkhud": {
+   "bytes": 677901,
+   "ficheiro": "firmware-thinknode_m1-inkhud-2.7.26.54e0d8d-ota.zip",
+   "md5": "3ff34b245ecf81652981242b8e44245c",
+   "modelo": null,
+   "nome": "thinknode_m1-inkhud",
+   "sha256": "340f876d28b163bbce90b757a4e87efd78e3bdedbad16d8a3192bfaaa58e4e32",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-thinknode_m1-inkhud-2.7.26.54e0d8d-ota.zip"
+  },
+  "thinknode_m3": {
+   "bytes": 721939,
+   "ficheiro": "firmware-thinknode_m3-2.7.26.54e0d8d-ota.zip",
+   "md5": "f72044fa205d072e89d8cfda5b37370b",
+   "modelo": 115,
+   "nome": "Elecrow ThinkNode M3",
+   "sha256": "38636702c4e36099958449f860154c4a22cb55da1dd08201fd5fe39d07d963c3",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-thinknode_m3-2.7.26.54e0d8d-ota.zip"
+  },
+  "thinknode_m4": {
+   "bytes": 720931,
+   "ficheiro": "firmware-thinknode_m4-2.7.26.54e0d8d-ota.zip",
+   "md5": "8da01a95bed3f34d20cda3f0fa39003e",
+   "modelo": null,
+   "nome": "thinknode_m4",
+   "sha256": "36bec1719a1b93cac9051f7b9ce8c3cbbc1f3eabb9337932edd942e8711c7761",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-thinknode_m4-2.7.26.54e0d8d-ota.zip"
+  },
+  "thinknode_m6": {
+   "bytes": 729715,
+   "ficheiro": "firmware-thinknode_m6-2.7.26.54e0d8d-ota.zip",
+   "md5": "f3374c9f6b077b3d496554fa0fbc667c",
+   "modelo": 120,
+   "nome": "ThinkNode M6",
+   "sha256": "a4c8f59d0f93841796582ef988e64ddb9c2fd808ce8af1b8d5ac8f258f1f1755",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-thinknode_m6-2.7.26.54e0d8d-ota.zip"
+  },
+  "tracker-t1000-e": {
+   "bytes": 482705,
+   "ficheiro": "firmware-tracker-t1000-e-2.7.26.54e0d8d-ota.zip",
+   "md5": "41724213bab91df0622c61cf2b0c08ca",
+   "modelo": 71,
+   "nome": "Seeed SenseCAP T1000-E",
+   "sha256": "b6cee9bc1eb7235165f1b6ea8d49b018454dcfd8aa0ded6e60d9070ddad870ed",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-tracker-t1000-e-2.7.26.54e0d8d-ota.zip"
+  },
+  "wio-sdk-wm1110": {
+   "bytes": 698915,
+   "ficheiro": "firmware-wio-sdk-wm1110-2.7.26.54e0d8d-ota.zip",
+   "md5": "c7b0ec93e7d27e5f860dcda89392933f",
+   "modelo": null,
+   "nome": "wio-sdk-wm1110",
+   "sha256": "b0c9256d48d6b2324520451d00545248648002f77da3b97bbaeaaed821abfcde",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-wio-sdk-wm1110-2.7.26.54e0d8d-ota.zip"
+  },
+  "wio-tracker-wm1110": {
+   "bytes": 720095,
+   "ficheiro": "firmware-wio-tracker-wm1110-2.7.26.54e0d8d-ota.zip",
+   "md5": "a02f6d8b373204f9983d961ab01ea103",
+   "modelo": 21,
+   "nome": "Seeed Wio WM1110 Tracker",
+   "sha256": "b81a95e9704bd94f1467e52de0510f09821d54c971d666ebecc6d53d84ab68e3",
+   "url": "/firmware/2.7.26.54e0d8d/firmware-wio-tracker-wm1110-2.7.26.54e0d8d-ota.zip"
+  }
+ },
+ "gerado_em": "2026-11-18T17:55:35Z",
+ "por_modelo": {
+  "100": [
+   "seeed_wio_tracker_L1_eink"
+  ],
+  "101": [
+   "r1-neo"
+  ],
+  "105": [
+   "rak_wismeshtag"
+  ],
+  "108": [
+   "heltec-mesh-solar"
+  ],
+  "109": [
+   "t-echo-lite"
+  ],
+  "115": [
+   "thinknode_m3"
+  ],
+  "117": [
+   "rak3401-1watt"
+  ],
+  "120": [
+   "thinknode_m6"
+  ],
+  "127": [
+   "heltec-mesh-node-t096"
+  ],
+  "133": [
+   "heltec-mesh-node-t1"
+  ],
+  "135": [
+   "t-impulse-plus"
+  ],
+  "18": [
+   "nano-g2-ultra"
+  ],
+  "21": [
+   "wio-tracker-wm1110"
+  ],
+  "22": [
+   "rak2560"
+  ],
+  "29": [
+   "canaryone"
+  ],
+  "33": [
+   "t-echo-plus"
+  ],
+  "63": [
+   "nrf52_promicro_diy_tcxo"
+  ],
+  "69": [
+   "heltec-mesh-node-t114"
+  ],
+  "7": [
+   "t-echo"
+  ],
+  "71": [
+   "tracker-t1000-e"
+  ],
+  "84": [
+   "rak_wismeshtap"
+  ],
+  "88": [
+   "seeed_xiao_nrf52840_kit"
+  ],
+  "89": [
+   "thinknode_m1"
+  ],
+  "9": [
+   "rak4631"
+  ],
+  "93": [
+   "muzi-base"
+  ],
+  "94": [
+   "heltec-mesh-pocket-10000",
+   "heltec-mesh-pocket-10000-inkhud",
+   "heltec-mesh-pocket-5000",
+   "heltec-mesh-pocket-5000-inkhud"
+  ],
+  "95": [
+   "seeed_solar_node"
+  ],
+  "96": [
+   "rak4631_nomadstar_meteor_pro"
+  ],
+  "99": [
+   "seeed_wio_tracker_L1"
+  ]
+ },
+ "versao": "2.7.26.54e0d8d"
+}

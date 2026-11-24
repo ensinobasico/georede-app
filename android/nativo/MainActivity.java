@@ -37,6 +37,8 @@ public class MainActivity extends BridgeActivity {
         registerPlugin(GeoredeFicheiroPlugin.class);
         registerPlugin(GeoredeLoginPlugin.class);
         registerPlugin(GeoredeVozPlugin.class);
+        registerPlugin(GeoredeBondPlugin.class);
+        registerPlugin(GeoredeDfuPlugin.class);        // 18/11/2026: atualizar o programa do Geo
         super.onCreate(savedInstanceState);
         urlPendente = urlDaNotificacao(getIntent());
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {

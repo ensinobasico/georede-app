@@ -1,4 +1,4 @@
-// GEOREDE — depois de `npx cap add android` (e sempre que este projeto mudar):
+﻿// GEOREDE — depois de `npx cap add android` (e sempre que este projeto mudar):
 //  1. permissões de Bluetooth no AndroidManifest.xml (as do README do @capacitor-community/bluetooth-le);
 //  2. serviço em primeiro plano para a ligação ao Geo com o ecrã bloqueado (nativo/*.java + permissões + <service>);
 //  3. (06/11/2026) localização do telemóvel em todas as versões do Android, para a "Seta até ao Geo" (antes só até ao
@@ -20,7 +20,7 @@
 //     androidx.browser (Custom Tabs) e o intent-filter georede://login na MainActivity.
 // Pode correr-se mais de uma vez.
 const VERSAO_NOME = "1.0.0";
-const VERSAO_CODIGO = 4;          // tem de subir sempre: 1, 2, 3, … (a Play recusa um código repetido)
+const VERSAO_CODIGO = 5;          // tem de subir sempre: 1, 2, 3, … (a Play recusa um código repetido)
 const SDK = 36;
 
 const fs = require("fs");
