@@ -397,7 +397,10 @@
    "url": "/firmware/2.7.26.54e0d8d/firmware-wio-tracker-wm1110-2.7.26.54e0d8d-ota.zip"
   }
  },
+ "fonte": "https://github.com/meshtastic/firmware/releases/tag/v2.7.26.54e0d8d",
  "gerado_em": "2026-11-18T17:55:35Z",
+ "licenca": "GPL-3.0",
+ "licenca_url": "/firmware/LICENSE-GPL-3.0.txt",
  "por_modelo": {
   "100": [
    "seeed_wio_tracker_L1_eink"

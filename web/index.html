@@ -2032,6 +2032,7 @@
         <label for="zona-raio"><span data-i18n="zona.raio">Raio</span> <span class="raio-valor" id="zona-raio-valor">80 m</span></label>
         <input type="range" id="zona-raio" min="30" max="2000" step="10" value="80">
         <div class="fichas" id="zona-raios" role="group" aria-label="Tamanhos rápidos" data-i18n-aria-label="zona.raios_rapidos"></div>
+        <p class="dica" id="zona-raio-aviso" data-i18n="zona.raio_pequeno" role="status" hidden>Zona pequena: os Geos dão a posição no máximo de 5 em 5 min a andar, e só quando se afastam 50 m da última. Quem entra e fica parado logo à entrada pode só aparecer dentro ao fim de 1 hora. Com 75 m de raio ou mais, o aviso de entrada é mais certo.</p>
       </div>
       <div class="campo" role="group" aria-label="Quando avisar" data-i18n-aria-label="zona.quando_rotulo">
         <label data-i18n="zona.avisar_quando">Avisar quando</label>
@@ -2200,11 +2201,15 @@
     <p class="legal-mais"><a href="/api/legal/termos" target="_blank" rel="noopener" data-i18n="termos.termos">Termos de serviço</a>
       <a href="/api/legal/privacidade" target="_blank" rel="noopener" data-i18n="termos.privacidade">Política de privacidade</a>
       <a href="https://github.com/ensinobasico/georede-app" target="_blank" rel="noopener" data-i18n="termos.codigo">Código-fonte (GPL-3.0)</a>
-      <button type="button" class="marca-botao" id="marca-separador" aria-expanded="false" aria-controls="marca-mais" data-i18n="marca.botao">Marca Meshtastic®</button></p>
-    <div class="marca-mais" id="marca-mais" hidden>
+      <button type="button" class="marca-botao" id="marca-separador" aria-expanded="true" aria-controls="marca-mais" data-i18n="marca.botao">Marca Meshtastic®</button></p>
+    <div class="marca-mais" id="marca-mais">
       <p data-i18n="marca.nota">Meshtastic® é uma marca registada da Meshtastic LLC. A GEOREDE não é afiliada nem apoiada pela Meshtastic LLC.</p>
       <p lang="en">Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.</p>
       <p data-i18n="marca.garantia">Os Geos vendidos pela GEOREDE têm a garantia legal de 3 anos.</p>
+      <p data-i18n="marca.suporte">O suporte dos Geos e da app é dado pela GEOREDE (ola@georede.com). Não contactes o projeto Meshtastic nem os grupos da comunidade sobre a GEOREDE.</p>
+      <p><span data-i18n="marca.firmware">Os Geos trazem o firmware Meshtastic® 2.7.26, software livre com a licença GPL-3.0. Código-fonte:</span>
+        <a href="https://github.com/meshtastic/firmware/releases/tag/v2.7.26.54e0d8d" target="_blank" rel="noopener">github.com/meshtastic/firmware</a>
+        · <a href="/firmware/LICENSE-GPL-3.0.txt" target="_blank" rel="noopener">GPL-3.0</a></p>
     </div>
     <div class="conta-mais">
       <span id="conta-mais"></span>
@@ -2623,6 +2628,8 @@ const TEXTOS = {
     "marca.botao": "Marca Meshtastic®",
     "marca.nota": "Meshtastic® é uma marca registada da Meshtastic LLC. A GEOREDE não é afiliada nem apoiada pela Meshtastic LLC.",
     "marca.garantia": "Os Geos vendidos pela GEOREDE têm a garantia legal de 3 anos.",
+    "marca.suporte": "O suporte dos Geos e da app é dado pela GEOREDE (ola@georede.com). Não contactes o projeto Meshtastic nem os grupos da comunidade sobre a GEOREDE.",
+    "marca.firmware": "Os Geos trazem o firmware Meshtastic® 2.7.26, software livre com a licença GPL-3.0. Código-fonte:",
     "termos.falta": "Para continuar, marca que aceitas os Termos de serviço e a Política de privacidade.",
     "legal.erro": "Sem ligação. Tenta outra vez daqui a pouco.",
     "entrada.ola": "Olá, {nome}!",
@@ -2827,7 +2834,7 @@ const TEXTOS = {
     "adicionar.farol_ligado": "Farol ligado ✓. «{nome}» já leva as posições dos teus Geos ao mapa, mesmo quando não estás em casa.",
     "adicionar.farol_zona": "Para acabar com os falsos alarmes em casa, escolhe-o como «Farol desta zona» na zona Casa.",
     "adicionar.farol_tarde": "O Farol ainda não se ligou ao servidor. Confirma no ecrã do Farol: a rede é de 2,4 GHz, a palavra-passe está certa e o ícone do Wi-Fi está branco com um IP. Quando se ligar, começa a funcionar sozinho.",
-    "adicionar.ligar_dica": "Liga o Geo e põe-no ao pé do telemóvel. Se o telemóvel pedir um PIN, escreve 123456 (o PIN de origem). Se o Geo estiver ligado a outra app (por exemplo a app Meshtastic), desliga-o dessa app primeiro.",
+    "adicionar.ligar_dica": "Liga o Geo e põe-no ao pé do telemóvel. Se o telemóvel pedir um PIN: num Geo com ecrã (L1 Pro, X1) é o número que aparece no ecrã do Geo; num Geo sem ecrã (T1000-E) é 123456. Se o Geo estiver ligado a outra app (por exemplo a app Meshtastic), desliga-o dessa app primeiro.",
     "adicionar.ligar": "Ligar ao Geo",
     "atualizar.titulo": "Atualizar o Geo",
     "atualizar.dica": "Há uma versão mais recente do programa deste Geo: a {para} (tem a {de}).",
@@ -2835,6 +2842,7 @@ const TEXTOS = {
     "atualizar.explica": "Vamos instalar a versão {para} em «{nome}» (tem a {de}), por Bluetooth. Pode demorar vários minutos.",
     "atualizar.cuidados": "Deixa o telemóvel ao lado do Geo e não feches a app. O Geo deve ter a bateria acima de metade ou estar a carregar. A configuração da tua rede mantém-se.",
     "atualizar.pin": "No fim, o telemóvel pode voltar a pedir o PIN de Bluetooth do Geo.",
+    "atualizar.licenca": "O programa dos Geos é o firmware Meshtastic®, software livre com a licença GPL-3.0. Código-fonte desta versão:",
     "atualizar.comecar": "Atualizar agora",
     "atualizar.agora_nao": "Agora não",
     "atualizar.a_descarregar": "A descarregar o programa…",
@@ -2853,7 +2861,7 @@ const TEXTOS = {
     "adicionar.bateria_fraca": "O telemóvel tem pouca bateria. Põe-no a carregar antes de começar: com pouca bateria, o telemóvel pode desligar a ligação a meio.",
     "adicionar.falta_nome": "Dá um nome ao Geo (até 24 letras).",
     "adicionar.a_ligar": "A ligar ao Geo por Bluetooth…",
-    "adicionar.emparelhar": "Se aparecer «Pedido de emparelhamento» (pode vir como notificação, no cimo do ecrã), toca em «Emparelhar» e escreve o PIN do Geo: o de origem é 123456.",
+    "adicionar.emparelhar": "Se aparecer «Pedido de emparelhamento» (pode vir como notificação, no cimo do ecrã), toca em «Emparelhar» e escreve o PIN: num Geo com ecrã (L1 Pro, X1), o número que aparece no ecrã do Geo; num Geo sem ecrã (T1000-E), 123456.",
     "adicionar.a_pedir": "Ligado a {geo}. A confirmar com a tua conta…",
     "adicionar.a_preparar": "A preparar a configuração da tua rede…",
     "adicionar.a_gravar": "A gravar no Geo ({n} de {total}). Não te afastes nem feches a app.",
@@ -2870,6 +2878,7 @@ const TEXTOS = {
     "adicionar.pin_novo": "PIN de Bluetooth novo deste Geo. Guarda-o: precisas dele para o ligar a outro telemóvel.",
     "adicionar.pin_igual": "O PIN de Bluetooth do Geo não mudou: para o ligar a outro telemóvel, usa o mesmo de antes (de origem, 123456).",
     "adicionar.pin_novo_ecra": "Para ligar este Geo a outro telemóvel, usa o PIN que aparece no ecrã do Geo.",
+    "adicionar.pin_mesmo": "O PIN de Bluetooth do Geo não mudou: para o ligar a outro telemóvel, usa o mesmo de antes.",
     "adicionar.ceu": "Leva-o para um sítio com céu à vista: a primeira posição pode demorar 5 a 15 minutos.",
     "adicionar.concluir": "Concluir",
     "adicionar.outra_vez": "Tentar outra vez",
@@ -2878,6 +2887,7 @@ const TEXTOS = {
     "adicionar.erro_servidor": "O servidor não preparou a configuração a tempo. Tenta outra vez daqui a pouco; se repetir, fala connosco: ola@georede.com.",
     "adicionar.erro_definicoes": "Não consegui ler as definições do Geo. Desliga e volta a ligar o Geo e tenta outra vez.",
     "adicionar.erro_gerido": "Este Geo está gerido por outra rede. Pede a quem o tinha que o liberte, ou repõe as definições de fábrica do Geo.",
+    "adicionar.erro_gerido_meu": "Este Geo está protegido contra alterações. Já pedi ao servidor para o desproteger: deixa a app ligada a ele um ou dois minutos e volta a adicionar.",
     "adicionar.erro_chaves": "Este Geo já aceita ordens de três outros administradores. Repõe as definições de fábrica do Geo e tenta outra vez.",
     "adicionar.erro_caiu": "A ligação ao Geo caiu a meio. Aproxima o Geo do telemóvel e tenta outra vez.",
     "adicionar.erro_caiu_passo": "A ligação ao Geo caiu ao gravar «{o}» ({n} de {total}): {motivo}. O Geo não guardou nada. Aproxima-o do telemóvel e tenta outra vez.",
@@ -2888,6 +2898,7 @@ const TEXTOS = {
     "adicionar.falta_canais": "canais",
     "adicionar.falta_nome_geo": "nome",
     "adicionar.falta_chave": "chave de administrador",
+    "adicionar.falta_mqtt": "a ponte pelo telemóvel (o Geo ainda ignora o MQTT)",
     "aparelhos.vazio": "Ainda não há Geos nesta rede. Já podes falar com a família pela app; para juntar um Geo, toca em «Adicionar um Geo».",
     "nome.campo": "Nome do Geo",
     "nome.guardar": "Guardar o nome",
@@ -2903,7 +2914,7 @@ const TEXTOS = {
     "avancado.confirmar_botao": "Ligar o modo avançado",
     "avancado.ligado": "Modo avançado ligado em «{nome}».",
     "avancado.desligado": "Modo avançado desligado em «{nome}».",
-    "libertar.botao": "Libertar",
+    "libertar.botao": "Remover",
     "libertar.confirmar": "Libertar «{nome}»? Deixa de ser um Geo: sai da tua rede e do mapa e volta a ser um equipamento Meshtastic normal, que podes usar com outras aplicações. A alteração chega ao Geo da próxima vez que estiver ao alcance da tua rede. Para voltar à GEOREDE, fala connosco.",
     "libertar.feito": "«{nome}» foi libertado e saiu da tua conta.",
     "espera.ligar": "Ligar por Bluetooth",
@@ -2912,18 +2923,21 @@ const TEXTOS = {
     "espera.reiniciar": "Reiniciar o Geo",
     "espera.confirmar": "Confirmar que ficou tudo certo",
     "espera.nao_feches": "Não feches a app nem afastes o Geo até ao fim.",
-    "libertacao.titulo": "Libertar o Geo",
+    "libertacao.titulo": "Remover da conta",
     "libertacao.pendente": "À espera de «{nome}». Deixa-o ligado e ao alcance da tua rede (perto do Farol ou do telemóvel ligado por Bluetooth).",
-    "libertacao.a_trabalhar": "A libertar «{nome}»… passo {n} de {total}. Não desligues o Geo.",
+    "libertacao.liga_o_geo": "Liga o Geo e aproxima-o do telemóvel: o pedido segue assim que a app se ligar a ele.",
+    "libertar.segurar": "Segura o botão para confirmar",
+    "libertacao.a_trabalhar": "A remover «{nome}»… passo {n} de {total}. Não desligues o Geo.",
     "libertacao.repetir": "O Geo ainda não respondeu. O servidor volta a tentar sozinho.",
     "libertacao.feito": "«{nome}» está livre. Já é um equipamento Meshtastic normal: podes usá-lo com a app do Meshtastic.",
     "libertacao.falhou": "Não foi possível acabar de libertar «{nome}». Fala connosco: ola@georede.com.",
     "libertacao.depois": "Fechar e ver depois",
-    "libertacao.depois_dica": "A libertação continua mesmo com a app fechada.",
+    "libertacao.depois_dica": "A remoção continua mesmo com a app fechada.",
     "libertacao.concluir": "Concluir",
     "libertacao.esquecido": "O telemóvel desligou-se e já esqueceu este Geo. Podes ligá-lo à app do Meshtastic.",
     "libertacao.esquecer_mao": "Falta só esquecê-lo no Bluetooth do telemóvel: em Definições › Bluetooth, toca no Geo e em «Esquecer».",
     "libertacao.abrir_bt": "Abrir definições de Bluetooth",
+    "libertacao.desliga_liga": "Agora desliga o Geo e volta a ligá-lo: só assim fica como de fábrica e volta a aparecer no Bluetooth.",
     "perdido.botao": "Perdi-o",
     "perdido.confirmar": "Perdeste «{nome}»? Sai da tua conta e do mapa e, por segurança, as chaves da tua rede são trocadas em todos os teus Geos (por rádio, um a um; o Farol por último). Durante uns minutos a rede pode falhar entre os Geos que já têm as chaves novas e os que ainda não. Quem estiver fora de alcance recebe-as quando voltar. Se o encontrares, fala connosco para o voltar a registar.",
     "perdido.feito": "«{nome}» saiu da tua conta. As chaves da tua rede vão ser trocadas nos outros Geos.",
@@ -2982,7 +2996,7 @@ const TEXTOS = {
     "canal.nome_dica": "Até 11 letras. Quem tiver o convite lê e escreve no canal.",
     "canal.criar_botao": "Criar",
     "canal.convite_rotulo": "Link ou código do convite",
-    "canal.convite_dica": "Cola aqui o link que recebeste. Também servem os links de canais Meshtastic.",
+    "canal.convite_dica": "Cola aqui o link do convite GEOREDE que recebeste.",
     "canal.juntar_botao": "Juntar",
     "canal.juntar_dica": "O canal fica gravado em {nome}. A família continua à parte.",
     "canal.cancelar": "Agora não",
@@ -3106,13 +3120,15 @@ const TEXTOS = {
     "msg.rapida_buscar": "Vem buscar-me",
     "msg.rapida_onde": "Onde estás?",
     "msg.tocar_ok": "Pedido enviado: {nome} toca assim que estiver ao alcance.",
-    "msg.posicao": "Atualizar posição",
+    "msg.posicao": "Pedir posição agora",
     "msg.posicao_pedido": "Pedido enviado a {nome}. A posição aparece aqui quando responder (até 1 minuto e meio).",
     "msg.posicao_ok": "{nome} respondeu ✓ Posição obtida {quando}.",
     "msg.posicao_sem_gps": "{nome} respondeu, mas ainda não tem GPS. Põe-no ao ar livre e tenta daqui a 3 minutos.",
     "msg.posicao_sem_resposta": "{nome} não respondeu. Pode estar fora de alcance ou com o rádio a dormir.",
     "msg.posicao_espera": "Pediste há pouco: o Geo só responde a um pedido de posição a cada 3 minutos.",
     "msg.posicao_sem_radio": "Para pedir a posição, liga a app a um Geo por Bluetooth (em Mais).",
+    "msg.posicao_pedido_servidor": "Pedido enviado a {nome} pelo servidor. A posição aparece no mapa quando o Geo responder.",
+    "msg.posicao_limite": "Já pediste a posição deste Geo muitas vezes nas últimas 4 horas. A rádio é partilhada: espera pela posição automática (no máximo de 5 em 5 min quando o Geo anda).",
     "msg.voltar": "Voltar às conversas",
     "msg.tocar": "Fazer tocar",
     "msg.ver_mapa": "Ver no mapa",
@@ -3207,6 +3223,7 @@ const TEXTOS = {
     "zona.nome_exemplo": "Casa, Escola, Garagem…",
     "zona.mudar_nome": "{nome}. Mudar o nome da zona",
     "zona.raio": "Raio",
+    "zona.raio_pequeno": "Zona pequena: os Geos dão a posição no máximo de 5 em 5 min a andar, e só quando se afastam 50 m da última. Quem entra e fica parado logo à entrada pode só aparecer dentro ao fim de 1 hora. Com 75 m de raio ou mais, o aviso de entrada é mais certo.",
     "zona.quando_rotulo": "Quando avisar",
     "zona.avisar_quando": "Avisar quando",
     "zona.sair": "sair da zona",
@@ -3406,7 +3423,7 @@ const TEXTOS = {
     "geo.estado": "Estado",
     "geo.em_casa": "em {zona}, pelo Farol",
     "geo.problemas": "Se algo correu mal",
-    "libertar.botao_longo": "Libertar este Geo",
+    "libertar.botao_longo": "Remover da conta",
     "procurar.mais_curto": "+{h} h"
   },
   en: {
@@ -3632,6 +3649,8 @@ const TEXTOS = {
     "marca.botao": "Meshtastic® trademark",
     "marca.nota": "Meshtastic® is a registered trademark of Meshtastic LLC. GEOREDE is not affiliated with or endorsed by Meshtastic LLC.",
     "marca.garantia": "Geos sold by GEOREDE carry the 3-year legal guarantee.",
+    "marca.suporte": "Support for GEOREDE devices and the app comes from GEOREDE (ola@georede.com). Please don't contact the Meshtastic project or community groups about GEOREDE.",
+    "marca.firmware": "The Geos run Meshtastic® firmware 2.7.26, free software under the GPL-3.0 licence. Source code:",
     "termos.falta": "To continue, tick to accept the Terms of service and the Privacy policy.",
     "legal.erro": "No connection. Please try again shortly.",
     "entrada.ola": "Hi, {nome}!",
@@ -3834,7 +3853,7 @@ const TEXTOS = {
     "adicionar.farol_ligado": "Farol connected ✓. «{nome}» now brings your Geos' positions to the map, even when you're not at home.",
     "adicionar.farol_zona": "To stop false alarms at home, choose it as «Farol for this zone» in the Home zone.",
     "adicionar.farol_tarde": "The Farol hasn't connected to the server yet. Check on the Farol's screen: the network is 2.4 GHz, the password is correct and the Wi-Fi icon is white with an IP. Once it connects, it starts working by itself.",
-    "adicionar.ligar_dica": "Turn on the Geo and put it next to the phone. If the phone asks for a PIN, enter 123456 (the default PIN). If the Geo is connected to another app (for example Meshtastic), disconnect it from that app first.",
+    "adicionar.ligar_dica": "Turn on the Geo and put it next to the phone. If the phone asks for a PIN: on a Geo with a screen (L1 Pro, X1) it's the number shown on the Geo's screen; on a Geo without a screen (T1000-E) it's 123456. If the Geo is connected to another app (for example Meshtastic), disconnect it from that app first.",
     "adicionar.ligar": "Connect to Geo",
     "atualizar.titulo": "Update the Geo",
     "atualizar.dica": "There is a newer version of this Geo's software: {para} (it has {de}).",
@@ -3842,6 +3861,7 @@ const TEXTOS = {
     "atualizar.explica": "We'll install version {para} on «{nome}» (it has {de}), over Bluetooth. It can take several minutes.",
     "atualizar.cuidados": "Keep the phone next to the Geo and don't close the app. The Geo should be above half battery or charging. Your network's configuration is kept.",
     "atualizar.pin": "At the end, the phone may ask for the Geo's Bluetooth PIN again.",
+    "atualizar.licenca": "The Geos run Meshtastic® firmware, free software under the GPL-3.0 licence. Source code for this version:",
     "atualizar.comecar": "Update now",
     "atualizar.agora_nao": "Not now",
     "atualizar.a_descarregar": "Downloading the software…",
@@ -3860,7 +3880,7 @@ const TEXTOS = {
     "adicionar.bateria_fraca": "Your phone is low on battery. Plug it in before you start: on low battery the phone may cut Bluetooth halfway through.",
     "adicionar.falta_nome": "Give the Geo a name (up to 24 letters).",
     "adicionar.a_ligar": "Connecting to the Geo via Bluetooth…",
-    "adicionar.emparelhar": "If «Pairing request» appears (it may come as a notification at the top of the screen), tap «Pair» and enter the Geo's PIN: the default is 123456.",
+    "adicionar.emparelhar": "If «Pairing request» appears (it may come as a notification at the top of the screen), tap «Pair» and enter the PIN: on a Geo with a screen (L1 Pro, X1), the number shown on the Geo's screen; on a Geo without a screen (T1000-E), 123456.",
     "adicionar.a_pedir": "Connected to {geo}. Confirming with your account…",
     "adicionar.a_preparar": "Preparing your network's configuration…",
     "adicionar.a_gravar": "Saving to the Geo ({n} of {total}). Don't move away or close the app.",
@@ -3877,6 +3897,7 @@ const TEXTOS = {
     "adicionar.pin_novo": "This Geo's new Bluetooth PIN. Keep it safe: you'll need it to connect it to another phone.",
     "adicionar.pin_igual": "The Geo's Bluetooth PIN hasn't changed: to connect it to another phone, use the same one as before (default 123456).",
     "adicionar.pin_novo_ecra": "To connect this Geo to another phone, use the PIN shown on the Geo's screen.",
+    "adicionar.pin_mesmo": "The Geo's Bluetooth PIN hasn't changed: to connect it to another phone, use the same one as before.",
     "adicionar.ceu": "Take it somewhere with a clear view of the sky: the first position may take 5 to 15 minutes.",
     "adicionar.concluir": "Finish",
     "adicionar.outra_vez": "Try again",
@@ -3885,6 +3906,7 @@ const TEXTOS = {
     "adicionar.erro_servidor": "The server didn't prepare the configuration in time. Try again shortly; if it happens again, contact us: ola@georede.com.",
     "adicionar.erro_definicoes": "Couldn't read the Geo's settings. Turn the Geo off and on again and try again.",
     "adicionar.erro_gerido": "This Geo is managed by another network. Ask whoever had it to release it, or factory reset the Geo.",
+    "adicionar.erro_gerido_meu": "This Geo is protected against changes. I've asked the server to unprotect it: keep the app connected to it for a minute or two, then add it again.",
     "adicionar.erro_chaves": "This Geo already accepts commands from three other administrators. Factory reset the Geo and try again.",
     "adicionar.erro_caiu": "The connection to the Geo dropped halfway. Bring the Geo closer to the phone and try again.",
     "adicionar.erro_caiu_passo": "The connection to the Geo dropped while saving «{o}» ({n} of {total}): {motivo}. The Geo saved nothing. Bring it closer to the phone and try again.",
@@ -3895,6 +3917,7 @@ const TEXTOS = {
     "adicionar.falta_canais": "channels",
     "adicionar.falta_nome_geo": "name",
     "adicionar.falta_chave": "administrator key",
+    "adicionar.falta_mqtt": "the phone bridge (the Geo still ignores MQTT)",
     "aparelhos.vazio": "No Geos in this network yet. You can already chat with the family in the app; to add a Geo, tap «Add a Geo».",
     "nome.campo": "Geo name",
     "nome.guardar": "Save name",
@@ -3920,6 +3943,8 @@ const TEXTOS = {
     "espera.nao_feches": "Don't close the app or move the Geo away until it's finished.",
     "libertacao.titulo": "Release the Geo",
     "libertacao.pendente": "Waiting for «{nome}». Keep it on and in range of your network (near the Beacon or the phone connected over Bluetooth).",
+    "libertacao.liga_o_geo": "Turn the Geo on and bring it near the phone: the request goes out as soon as the app connects to it.",
+    "libertar.segurar": "Press and hold to confirm",
     "libertacao.a_trabalhar": "Releasing «{nome}»… step {n} of {total}. Don't turn the Geo off.",
     "libertacao.repetir": "The Geo hasn't answered yet. The server will try again by itself.",
     "libertacao.feito": "«{nome}» is free. It's a normal Meshtastic device now: you can use it with the Meshtastic app.",
@@ -3930,6 +3955,7 @@ const TEXTOS = {
     "libertacao.esquecido": "The phone disconnected and has forgotten this Geo. You can connect it to the Meshtastic app.",
     "libertacao.esquecer_mao": "One last thing: forget it in the phone's Bluetooth. In Settings › Bluetooth, tap the Geo and «Forget».",
     "libertacao.abrir_bt": "Open Bluetooth settings",
+    "libertacao.desliga_liga": "Now turn the Geo off and on again: only then is it back to factory settings and visible on Bluetooth.",
     "perdido.botao": "I lost it",
     "perdido.confirmar": "Lost «{nome}»? It's removed from your account and the map and, for safety, your network's keys are changed on all your Geos (by radio, one by one; the Farol last). For a few minutes the network may fail between Geos that already have the new keys and those that don't yet. Any out of range get them when they're back. If you find it, contact us to register it again.",
     "perdido.feito": "«{nome}» has been removed from your account. Your network's keys will be changed on the other Geos.",
@@ -3987,7 +4013,7 @@ const TEXTOS = {
     "canal.nome_dica": "Up to 11 letters. Anyone with the invite can read and write in the channel.",
     "canal.criar_botao": "Create",
     "canal.convite_rotulo": "Invite link or code",
-    "canal.convite_dica": "Paste the link you received. Meshtastic channel links work too.",
+    "canal.convite_dica": "Paste the GEOREDE invite link you received.",
     "canal.juntar_botao": "Join",
     "canal.juntar_dica": "The channel is saved on {nome}. Family stays separate.",
     "canal.cancelar": "Not now",
@@ -4110,13 +4136,15 @@ const TEXTOS = {
     "msg.rapida_buscar": "Come and get me",
     "msg.rapida_onde": "Where are you?",
     "msg.tocar_ok": "Request sent: {nome} will ring as soon as it's in range.",
-    "msg.posicao": "Update position",
+    "msg.posicao": "Ask for position now",
     "msg.posicao_pedido": "Request sent to {nome}. The position shows up here when it answers (up to a minute and a half).",
     "msg.posicao_ok": "{nome} answered ✓ Position taken {quando}.",
     "msg.posicao_sem_gps": "{nome} answered, but has no GPS fix yet. Take it outdoors and try again in 3 minutes.",
     "msg.posicao_sem_resposta": "{nome} didn't answer. It may be out of range or its radio may be asleep.",
     "msg.posicao_espera": "You asked a moment ago: the Geo only answers one position request every 3 minutes.",
     "msg.posicao_sem_radio": "To ask for the position, connect the app to a Geo over Bluetooth (under More).",
+    "msg.posicao_pedido_servidor": "Request sent to {nome} through the server. The position shows up on the map when the Geo answers.",
+    "msg.posicao_limite": "You have asked this Geo for its position many times in the last 4 hours. The radio is shared: wait for the automatic position (at most every 5 min while the Geo moves).",
     "msg.voltar": "Back to conversations",
     "msg.tocar": "Ring",
     "msg.ver_mapa": "View on map",
@@ -4207,6 +4235,7 @@ const TEXTOS = {
     "zona.nome_exemplo": "Home, School, Garage…",
     "zona.mudar_nome": "{nome}. Rename the zone",
     "zona.raio": "Radius",
+    "zona.raio_pequeno": "Small zone: Geos send their position at most every 5 min while moving, and only once they are 50 m from the last one. Someone who comes in and stops just inside may only show up inside after 1 hour. With a radius of 75 m or more, the arrival alert is more reliable.",
     "zona.quando_rotulo": "When to alert",
     "zona.avisar_quando": "Alert when",
     "zona.sair": "leaving the zone",
@@ -4634,6 +4663,8 @@ const TEXTOS = {
     "marca.botao": "Marca Meshtastic®",
     "marca.nota": "Meshtastic® es una marca registrada de Meshtastic LLC. GEOREDE no está afiliada ni respaldada por Meshtastic LLC.",
     "marca.garantia": "Los Geos vendidos por GEOREDE tienen la garantía legal de 3 años.",
+    "marca.suporte": "El soporte de los Geos y de la app lo da GEOREDE (ola@georede.com). No contactes con el proyecto Meshtastic ni con los grupos de la comunidad sobre GEOREDE.",
+    "marca.firmware": "Los Geos llevan el firmware Meshtastic® 2.7.26, software libre con la licencia GPL-3.0. Código fuente:",
     "termos.falta": "Para continuar, marca que aceptas los Términos del servicio y la Política de privacidad.",
     "legal.erro": "Sin conexión. Inténtalo de nuevo dentro de poco.",
     "entrada.ola": "¡Hola, {nome}!",
@@ -4836,7 +4867,7 @@ const TEXTOS = {
     "adicionar.farol_ligado": "Farol conectado ✓. «{nome}» ya lleva las posiciones de tus Geos al mapa, incluso cuando no estás en casa.",
     "adicionar.farol_zona": "Para acabar con las falsas alarmas en casa, elígelo como «Farol de esta zona» en la zona Casa.",
     "adicionar.farol_tarde": "El Farol aún no se ha conectado al servidor. Comprueba en la pantalla del Farol: la red es de 2,4 GHz, la contraseña es correcta y el icono del Wi-Fi está blanco con una IP. Cuando se conecte, empieza a funcionar solo.",
-    "adicionar.ligar_dica": "Enciende el Geo y ponlo junto al móvil. Si el móvil pide un PIN, escribe 123456 (el PIN de fábrica). Si el Geo está conectado a otra app (por ejemplo la app Meshtastic), desconéctalo antes de esa app.",
+    "adicionar.ligar_dica": "Enciende el Geo y ponlo junto al móvil. Si el móvil pide un PIN: en un Geo con pantalla (L1 Pro, X1) es el número que aparece en la pantalla del Geo; en un Geo sin pantalla (T1000-E) es 123456. Si el Geo está conectado a otra app (por ejemplo la app Meshtastic), desconéctalo antes de esa app.",
     "adicionar.ligar": "Conectar con el Geo",
     "atualizar.titulo": "Actualizar el Geo",
     "atualizar.dica": "Hay una versión más reciente del programa de este Geo: la {para} (tiene la {de}).",
@@ -4844,6 +4875,7 @@ const TEXTOS = {
     "atualizar.explica": "Vamos a instalar la versión {para} en «{nome}» (tiene la {de}), por Bluetooth. Puede tardar varios minutos.",
     "atualizar.cuidados": "Deja el móvil junto al Geo y no cierres la app. El Geo debe tener más de media batería o estar cargando. La configuración de tu red se mantiene.",
     "atualizar.pin": "Al terminar, el móvil puede volver a pedir el PIN de Bluetooth del Geo.",
+    "atualizar.licenca": "El programa de los Geos es el firmware Meshtastic®, software libre con la licencia GPL-3.0. Código fuente de esta versión:",
     "atualizar.comecar": "Actualizar ahora",
     "atualizar.agora_nao": "Ahora no",
     "atualizar.a_descarregar": "Descargando el programa…",
@@ -4862,7 +4894,7 @@ const TEXTOS = {
     "adicionar.bateria_fraca": "El móvil tiene poca batería. Ponlo a cargar antes de empezar: con poca batería, el móvil puede cortar el Bluetooth a mitad.",
     "adicionar.falta_nome": "Ponle un nombre al Geo (hasta 24 letras).",
     "adicionar.a_ligar": "Conectando con el Geo por Bluetooth…",
-    "adicionar.emparelhar": "Si aparece «Solicitud de emparejamiento» (puede llegar como notificación, en la parte superior de la pantalla), toca «Emparejar» y escribe el PIN del Geo: el de fábrica es 123456.",
+    "adicionar.emparelhar": "Si aparece «Solicitud de emparejamiento» (puede llegar como notificación, en la parte superior de la pantalla), toca «Emparejar» y escribe el PIN: en un Geo con pantalla (L1 Pro, X1), el número que aparece en la pantalla del Geo; en un Geo sin pantalla (T1000-E), 123456.",
     "adicionar.a_pedir": "Conectado a {geo}. Confirmando con tu cuenta…",
     "adicionar.a_preparar": "Preparando la configuración de tu red…",
     "adicionar.a_gravar": "Grabando en el Geo ({n} de {total}). No te alejes ni cierres la app.",
@@ -4879,6 +4911,7 @@ const TEXTOS = {
     "adicionar.pin_novo": "PIN de Bluetooth nuevo de este Geo. Guárdalo: lo necesitas para conectarlo a otro móvil.",
     "adicionar.pin_igual": "El PIN de Bluetooth del Geo no ha cambiado: para conectarlo a otro móvil, usa el mismo de antes (de fábrica, 123456).",
     "adicionar.pin_novo_ecra": "Para conectar este Geo a otro móvil, usa el PIN que aparece en la pantalla del Geo.",
+    "adicionar.pin_mesmo": "El PIN de Bluetooth del Geo no ha cambiado: para conectarlo a otro móvil, usa el mismo de antes.",
     "adicionar.ceu": "Llévalo a un sitio con el cielo despejado: la primera posición puede tardar de 5 a 15 minutos.",
     "adicionar.concluir": "Terminar",
     "adicionar.outra_vez": "Intentar de nuevo",
@@ -4887,6 +4920,7 @@ const TEXTOS = {
     "adicionar.erro_servidor": "El servidor no ha preparado la configuración a tiempo. Inténtalo de nuevo dentro de un rato; si se repite, escríbenos: ola@georede.com.",
     "adicionar.erro_definicoes": "No he podido leer los ajustes del Geo. Apaga y vuelve a encender el Geo e inténtalo de nuevo.",
     "adicionar.erro_gerido": "Este Geo está gestionado por otra red. Pide a quien lo tenía que lo libere, o restablece los ajustes de fábrica del Geo.",
+    "adicionar.erro_gerido_meu": "Este Geo está protegido contra cambios. Ya pedí al servidor que lo desproteja: deja la app conectada a él uno o dos minutos y vuelve a añadirlo.",
     "adicionar.erro_chaves": "Este Geo ya acepta órdenes de otros tres administradores. Restablece los ajustes de fábrica del Geo e inténtalo de nuevo.",
     "adicionar.erro_caiu": "La conexión con el Geo se ha cortado a medias. Acerca el Geo al móvil e inténtalo de nuevo.",
     "adicionar.erro_caiu_passo": "La conexión con el Geo se ha cortado al grabar «{o}» ({n} de {total}): {motivo}. El Geo no ha guardado nada. Acércalo al móvil e inténtalo de nuevo.",
@@ -4897,6 +4931,7 @@ const TEXTOS = {
     "adicionar.falta_canais": "canales",
     "adicionar.falta_nome_geo": "nombre",
     "adicionar.falta_chave": "clave de administrador",
+    "adicionar.falta_mqtt": "el puente por el móvil (el Geo aún ignora el MQTT)",
     "aparelhos.vazio": "Aún no hay Geos en esta red. Ya puedes hablar con la familia por la app; para añadir un Geo, toca «Añadir un Geo».",
     "nome.campo": "Nombre del Geo",
     "nome.guardar": "Guardar el nombre",
@@ -4922,6 +4957,8 @@ const TEXTOS = {
     "espera.nao_feches": "No cierres la app ni alejes el Geo hasta el final.",
     "libertacao.titulo": "Liberar el Geo",
     "libertacao.pendente": "Esperando a «{nome}». Déjalo encendido y al alcance de tu red (cerca del Faro o del móvil conectado por Bluetooth).",
+    "libertacao.liga_o_geo": "Enciende el Geo y acércalo al móvil: la orden sale en cuanto la app se conecte a él.",
+    "libertar.segurar": "Mantén pulsado para confirmar",
     "libertacao.a_trabalhar": "Liberando «{nome}»… paso {n} de {total}. No apagues el Geo.",
     "libertacao.repetir": "El Geo aún no ha respondido. El servidor lo vuelve a intentar solo.",
     "libertacao.feito": "«{nome}» está libre. Ya es un equipo Meshtastic normal: puedes usarlo con la app de Meshtastic.",
@@ -4932,6 +4969,7 @@ const TEXTOS = {
     "libertacao.esquecido": "El móvil se ha desconectado y ya ha olvidado este Geo. Puedes conectarlo a la app de Meshtastic.",
     "libertacao.esquecer_mao": "Solo falta olvidarlo en el Bluetooth del móvil: en Ajustes › Bluetooth, toca el Geo y «Olvidar».",
     "libertacao.abrir_bt": "Abrir ajustes de Bluetooth",
+    "libertacao.desliga_liga": "Ahora apaga el Geo y vuelve a encenderlo: solo así queda como de fábrica y vuelve a aparecer en el Bluetooth.",
     "perdido.botao": "Lo he perdido",
     "perdido.confirmar": "¿Has perdido «{nome}»? Sale de tu cuenta y del mapa y, por seguridad, se cambian las claves de tu red en todos tus Geos (por radio, uno a uno; el Farol el último). Durante unos minutos la red puede fallar entre los Geos que ya tienen las claves nuevas y los que aún no. Los que estén fuera de alcance las reciben cuando vuelvan. Si lo encuentras, escríbenos para volver a registrarlo.",
     "perdido.feito": "«{nome}» ha salido de tu cuenta. Las claves de tu red se cambiarán en los demás Geos.",
@@ -4989,7 +5027,7 @@ const TEXTOS = {
     "canal.nome_dica": "Hasta 11 letras. Quien tenga la invitación lee y escribe en el canal.",
     "canal.criar_botao": "Crear",
     "canal.convite_rotulo": "Enlace o código de la invitación",
-    "canal.convite_dica": "Pega aquí el enlace que recibiste. También sirven los enlaces de canales Meshtastic.",
+    "canal.convite_dica": "Pega aquí el enlace de invitación GEOREDE que recibiste.",
     "canal.juntar_botao": "Unirme",
     "canal.juntar_dica": "El canal queda guardado en {nome}. La familia sigue aparte.",
     "canal.cancelar": "Ahora no",
@@ -5112,13 +5150,15 @@ const TEXTOS = {
     "msg.rapida_buscar": "Ven a buscarme",
     "msg.rapida_onde": "¿Dónde estás?",
     "msg.tocar_ok": "Petición enviada: {nome} sonará en cuanto esté al alcance.",
-    "msg.posicao": "Actualizar posición",
+    "msg.posicao": "Pedir posición ahora",
     "msg.posicao_pedido": "Petición enviada a {nome}. La posición aparece aquí cuando responda (hasta minuto y medio).",
     "msg.posicao_ok": "{nome} ha respondido ✓ Posición obtenida {quando}.",
     "msg.posicao_sem_gps": "{nome} ha respondido, pero aún no tiene GPS. Sácalo al aire libre e inténtalo dentro de 3 minutos.",
     "msg.posicao_sem_resposta": "{nome} no ha respondido. Puede estar fuera de alcance o con la radio dormida.",
     "msg.posicao_espera": "Lo pediste hace poco: el Geo solo responde a una petición de posición cada 3 minutos.",
     "msg.posicao_sem_radio": "Para pedir la posición, conecta la app a un Geo por Bluetooth (en Más).",
+    "msg.posicao_pedido_servidor": "Petición enviada a {nome} por el servidor. La posición aparece en el mapa cuando el Geo responda.",
+    "msg.posicao_limite": "Ya has pedido la posición de este Geo muchas veces en las últimas 4 horas. La radio es compartida: espera la posición automática (como mucho cada 5 min cuando el Geo se mueve).",
     "msg.voltar": "Volver a las conversaciones",
     "msg.tocar": "Hacer sonar",
     "msg.ver_mapa": "Ver en el mapa",
@@ -5209,6 +5249,7 @@ const TEXTOS = {
     "zona.nome_exemplo": "Casa, Colegio, Garaje…",
     "zona.mudar_nome": "{nome}. Cambiar el nombre de la zona",
     "zona.raio": "Radio",
+    "zona.raio_pequeno": "Zona pequeña: los Geos dan la posición como mucho cada 5 min en marcha, y solo cuando se alejan 50 m de la última. Quien entra y se queda parado justo en la entrada puede no aparecer dentro hasta pasada 1 hora. Con 75 m de radio o más, el aviso de entrada es más fiable.",
     "zona.quando_rotulo": "Cuándo avisar",
     "zona.avisar_quando": "Avisar al",
     "zona.sair": "salir de la zona",
@@ -5636,6 +5677,8 @@ const TEXTOS = {
     "marca.botao": "Marque Meshtastic®",
     "marca.nota": "Meshtastic® est une marque déposée de Meshtastic LLC. GEOREDE n'est ni affiliée à Meshtastic LLC ni soutenue par elle.",
     "marca.garantia": "Les Geos vendus par GEOREDE bénéficient de la garantie légale de 3 ans.",
+    "marca.suporte": "Le support des Geos et de l'app est assuré par GEOREDE (ola@georede.com). Ne contacte pas le projet Meshtastic ni les groupes de la communauté au sujet de GEOREDE.",
+    "marca.firmware": "Les Geos utilisent le firmware Meshtastic® 2.7.26, un logiciel libre sous licence GPL-3.0. Code source :",
     "termos.falta": "Pour continuer, coche que tu acceptes les Conditions d'utilisation et la Politique de confidentialité.",
     "legal.erro": "Pas de connexion. Réessaie dans un instant.",
     "entrada.ola": "Bonjour, {nome} !",
@@ -5838,7 +5881,7 @@ const TEXTOS = {
     "adicionar.farol_ligado": "Farol connecté ✓. « {nome} » envoie déjà les positions de tes Geos sur la carte, même quand tu n'es pas à la maison.",
     "adicionar.farol_zona": "Pour en finir avec les fausses alertes à la maison, choisis-le comme « Farol de cette zone » dans la zone Maison.",
     "adicionar.farol_tarde": "Le Farol ne s'est pas encore connecté au serveur. Vérifie sur l'écran du Farol : le réseau est en 2,4 GHz, le mot de passe est correct et l'icône Wi-Fi est blanche avec une IP. Une fois connecté, il fonctionne tout seul.",
-    "adicionar.ligar_dica": "Allume le Geo et place-le près du téléphone. Si le téléphone demande un code PIN, saisis 123456 (le PIN d'origine). Si le Geo est connecté à une autre appli (par exemple Meshtastic), déconnecte-le d'abord de cette appli.",
+    "adicionar.ligar_dica": "Allume le Geo et place-le près du téléphone. Si le téléphone demande un code PIN : sur un Geo avec écran (L1 Pro, X1), c'est le numéro affiché sur l'écran du Geo ; sur un Geo sans écran (T1000-E), c'est 123456. Si le Geo est connecté à une autre appli (par exemple Meshtastic), déconnecte-le d'abord de cette appli.",
     "adicionar.ligar": "Connecter le Geo",
     "atualizar.titulo": "Mettre à jour le Geo",
     "atualizar.dica": "Il existe une version plus récente du logiciel de ce Geo : la {para} (il a la {de}).",
@@ -5846,6 +5889,7 @@ const TEXTOS = {
     "atualizar.explica": "Nous allons installer la version {para} sur « {nome} » (il a la {de}), par Bluetooth. Cela peut prendre plusieurs minutes.",
     "atualizar.cuidados": "Laisse le téléphone à côté du Geo et ne ferme pas l'app. Le Geo doit avoir plus de la moitié de sa batterie ou être en charge. La configuration de ton réseau est conservée.",
     "atualizar.pin": "À la fin, le téléphone peut redemander le PIN Bluetooth du Geo.",
+    "atualizar.licenca": "Le programme des Geos est le firmware Meshtastic®, un logiciel libre sous licence GPL-3.0. Code source de cette version :",
     "atualizar.comecar": "Mettre à jour maintenant",
     "atualizar.agora_nao": "Pas maintenant",
     "atualizar.a_descarregar": "Téléchargement du logiciel…",
@@ -5864,7 +5908,7 @@ const TEXTOS = {
     "adicionar.bateria_fraca": "Le téléphone a peu de batterie. Mets-le en charge avant de commencer : avec peu de batterie, il peut couper le Bluetooth en cours de route.",
     "adicionar.falta_nome": "Donne un nom au Geo (24 lettres max.).",
     "adicionar.a_ligar": "Connexion au Geo en Bluetooth…",
-    "adicionar.emparelhar": "Si « Demande d'association » apparaît (parfois en notification, en haut de l'écran), touche « Associer » et saisis le PIN du Geo : celui d'origine est 123456.",
+    "adicionar.emparelhar": "Si « Demande d'association » apparaît (parfois en notification, en haut de l'écran), touche « Associer » et saisis le PIN : sur un Geo avec écran (L1 Pro, X1), le numéro affiché sur l'écran du Geo ; sur un Geo sans écran (T1000-E), 123456.",
     "adicionar.a_pedir": "Connecté à {geo}. Vérification avec ton compte…",
     "adicionar.a_preparar": "Préparation de la configuration de ton réseau…",
     "adicionar.a_gravar": "Écriture sur le Geo ({n} sur {total}). Ne t'éloigne pas et ne ferme pas l'appli.",
@@ -5881,6 +5925,7 @@ const TEXTOS = {
     "adicionar.pin_novo": "Nouveau code PIN Bluetooth de ce Geo. Garde-le : il te faudra pour le connecter à un autre téléphone.",
     "adicionar.pin_igual": "Le PIN Bluetooth du Geo n'a pas changé : pour le connecter à un autre téléphone, utilise le même qu'avant (d'origine, 123456).",
     "adicionar.pin_novo_ecra": "Pour connecter ce Geo à un autre téléphone, utilise le PIN affiché sur l'écran du Geo.",
+    "adicionar.pin_mesmo": "Le PIN Bluetooth du Geo n'a pas changé : pour le connecter à un autre téléphone, utilise le même qu'avant.",
     "adicionar.ceu": "Emmène-le dans un endroit avec vue sur le ciel : la première position peut prendre 5 à 15 minutes.",
     "adicionar.concluir": "Terminer",
     "adicionar.outra_vez": "Réessayer",
@@ -5889,6 +5934,7 @@ const TEXTOS = {
     "adicionar.erro_servidor": "Le serveur n'a pas préparé la configuration à temps. Réessaie dans un instant ; si ça se répète, contacte-nous : ola@georede.com.",
     "adicionar.erro_definicoes": "Impossible de lire les paramètres du Geo. Éteins puis rallume le Geo et réessaie.",
     "adicionar.erro_gerido": "Ce Geo est géré par un autre réseau. Demande à son ancien propriétaire de le libérer, ou rétablis les paramètres d'usine du Geo.",
+    "adicionar.erro_gerido_meu": "Ce Geo est protégé contre les modifications. J'ai demandé au serveur de le déprotéger : laisse l'app connectée à lui une minute ou deux, puis ajoute-le à nouveau.",
     "adicionar.erro_chaves": "Ce Geo accepte déjà les ordres de trois autres administrateurs. Rétablis les paramètres d'usine du Geo et réessaie.",
     "adicionar.erro_caiu": "La connexion au Geo a été coupée en cours de route. Rapproche le Geo du téléphone et réessaie.",
     "adicionar.erro_caiu_passo": "La connexion au Geo a été coupée pendant l'écriture de « {o} » ({n} sur {total}) : {motivo}. Le Geo n'a rien enregistré. Rapproche-le du téléphone et réessaie.",
@@ -5899,6 +5945,7 @@ const TEXTOS = {
     "adicionar.falta_canais": "canaux",
     "adicionar.falta_nome_geo": "nom",
     "adicionar.falta_chave": "clé d'administrateur",
+    "adicionar.falta_mqtt": "la passerelle via le téléphone (le Geo ignore encore le MQTT)",
     "aparelhos.vazio": "Pas encore de Geos dans ce réseau. Tu peux déjà discuter avec ta famille via l'appli ; pour ajouter un Geo, touche « Ajouter un Geo ».",
     "nome.campo": "Nom du Geo",
     "nome.guardar": "Enregistrer le nom",
@@ -5924,6 +5971,8 @@ const TEXTOS = {
     "espera.nao_feches": "Ne ferme pas l’app et n’éloigne pas le Geo avant la fin.",
     "libertacao.titulo": "Libérer le Geo",
     "libertacao.pendente": "En attente de « {nome} ». Laisse-le allumé et à portée de ton réseau (près du Phare ou du téléphone connecté en Bluetooth).",
+    "libertacao.liga_o_geo": "Allume le Geo et approche-le du téléphone : la demande part dès que l'app s'y connecte.",
+    "libertar.segurar": "Maintiens appuyé pour confirmer",
     "libertacao.a_trabalhar": "Libération de « {nome} »… étape {n} sur {total}. N’éteins pas le Geo.",
     "libertacao.repetir": "Le Geo n’a pas encore répondu. Le serveur réessaie tout seul.",
     "libertacao.feito": "« {nome} » est libre. C’est maintenant un appareil Meshtastic normal : tu peux l’utiliser avec l’app Meshtastic.",
@@ -5934,6 +5983,7 @@ const TEXTOS = {
     "libertacao.esquecido": "Le téléphone s’est déconnecté et a oublié ce Geo. Tu peux le connecter à l’app Meshtastic.",
     "libertacao.esquecer_mao": "Il reste à l’oublier dans le Bluetooth du téléphone : Réglages › Bluetooth, touche le Geo puis « Oublier ».",
     "libertacao.abrir_bt": "Ouvrir les réglages Bluetooth",
+    "libertacao.desliga_liga": "Maintenant, éteins le Geo puis rallume-le : c’est seulement ainsi qu’il revient aux réglages d’usine et réapparaît en Bluetooth.",
     "perdido.botao": "Je l'ai perdu",
     "perdido.confirmar": "Tu as perdu « {nome} » ? Il quitte ton compte et la carte et, par sécurité, les clés de ton réseau sont changées sur tous tes Geos (par radio, un par un ; le Farol en dernier). Pendant quelques minutes, le réseau peut mal fonctionner entre les Geos qui ont déjà les nouvelles clés et les autres. Ceux hors de portée les recevront à leur retour. Si tu le retrouves, contacte-nous pour le réenregistrer.",
     "perdido.feito": "« {nome} » a quitté ton compte. Les clés de ton réseau vont être changées sur les autres Geos.",
@@ -5991,7 +6041,7 @@ const TEXTOS = {
     "canal.nome_dica": "Jusqu'à 11 lettres. Qui a l'invitation lit et écrit dans le canal.",
     "canal.criar_botao": "Créer",
     "canal.convite_rotulo": "Lien ou code d'invitation",
-    "canal.convite_dica": "Colle ici le lien reçu. Les liens de canaux Meshtastic fonctionnent aussi.",
+    "canal.convite_dica": "Colle ici le lien d'invitation GEOREDE reçu.",
     "canal.juntar_botao": "Rejoindre",
     "canal.juntar_dica": "Le canal est enregistré sur {nome}. La famille reste à part.",
     "canal.cancelar": "Pas maintenant",
@@ -6114,13 +6164,15 @@ const TEXTOS = {
     "msg.rapida_buscar": "Viens me chercher",
     "msg.rapida_onde": "Tu es où ?",
     "msg.tocar_ok": "Demande envoyée : {nome} sonnera dès qu'il sera à portée.",
-    "msg.posicao": "Actualiser la position",
+    "msg.posicao": "Demander la position",
     "msg.posicao_pedido": "Demande envoyée à {nome}. La position s'affiche ici dès sa réponse (jusqu'à une minute et demie).",
     "msg.posicao_ok": "{nome} a répondu ✓ Position prise {quando}.",
     "msg.posicao_sem_gps": "{nome} a répondu, mais n'a pas encore de GPS. Mets-le à l'air libre et réessaie dans 3 minutes.",
     "msg.posicao_sem_resposta": "{nome} n'a pas répondu. Il est peut-être hors de portée ou sa radio dort.",
     "msg.posicao_espera": "Tu viens de demander : le Geo ne répond qu'à une demande de position toutes les 3 minutes.",
     "msg.posicao_sem_radio": "Pour demander la position, connecte l'app à un Geo en Bluetooth (dans Plus).",
+    "msg.posicao_pedido_servidor": "Demande envoyée à {nome} par le serveur. La position apparaît sur la carte quand le Geo répond.",
+    "msg.posicao_limite": "Tu as déjà demandé la position de ce Geo de nombreuses fois ces 4 dernières heures. La radio est partagée : attends la position automatique (au plus toutes les 5 min quand le Geo bouge).",
     "msg.voltar": "Retour aux conversations",
     "msg.tocar": "Faire sonner",
     "msg.ver_mapa": "Voir sur la carte",
@@ -6211,6 +6263,7 @@ const TEXTOS = {
     "zona.nome_exemplo": "Maison, École, Garage…",
     "zona.mudar_nome": "{nome}. Renommer la zone",
     "zona.raio": "Rayon",
+    "zona.raio_pequeno": "Petite zone : les Geos donnent leur position au plus toutes les 5 min en marche, et seulement après s'être éloignés de 50 m de la dernière. Quelqu'un qui entre et s'arrête juste à l'entrée peut n'apparaître dedans qu'au bout d'1 heure. Avec un rayon de 75 m ou plus, l'alerte d'entrée est plus fiable.",
     "zona.quando_rotulo": "Quand prévenir",
     "zona.avisar_quando": "Prévenir quand",
     "zona.sair": "il sort de la zone",
@@ -6642,6 +6695,8 @@ const TEXTOS = {
     "marca.botao": "Marke Meshtastic®",
     "marca.nota": "Meshtastic® ist eine eingetragene Marke der Meshtastic LLC. GEOREDE ist weder mit der Meshtastic LLC verbunden noch von ihr unterstützt.",
     "marca.garantia": "Für Geos, die GEOREDE verkauft, gilt die gesetzliche Gewährleistung von 3 Jahren.",
+    "marca.suporte": "Den Support für die Geos und die App leistet GEOREDE (ola@georede.com). Bitte wende dich wegen GEOREDE nicht an das Meshtastic-Projekt oder an Community-Gruppen.",
+    "marca.firmware": "Auf den Geos läuft die Meshtastic®-Firmware 2.7.26, freie Software unter der Lizenz GPL-3.0. Quellcode:",
     "termos.falta": "Um fortzufahren, bestätige, dass du die Nutzungsbedingungen und die Datenschutzerklärung akzeptierst.",
     "legal.erro": "Keine Verbindung. Versuch es gleich noch einmal.",
     "entrada.ola": "Hallo, {nome}!",
@@ -6844,7 +6899,7 @@ const TEXTOS = {
     "adicionar.farol_ligado": "Farol verbunden ✓. „{nome}“ bringt die Positionen deiner Geos jetzt auf die Karte, auch wenn du nicht zu Hause bist.",
     "adicionar.farol_zona": "Gegen Fehlalarme zu Hause wähle ihn in der Zone Zuhause als „Farol dieser Zone“.",
     "adicionar.farol_tarde": "Der Farol hat sich noch nicht mit dem Server verbunden. Prüfe am Display des Farol: Das Netz hat 2,4 GHz, das Passwort stimmt und das WLAN-Symbol ist weiß mit einer IP. Sobald er sich verbindet, läuft alles von selbst.",
-    "adicionar.ligar_dica": "Schalte den Geo ein und leg ihn neben das Handy. Fragt das Handy nach einer PIN, gib 123456 ein (die Standard-PIN). Ist der Geo mit einer anderen App verbunden (z. B. Meshtastic), trenne ihn dort zuerst.",
+    "adicionar.ligar_dica": "Schalte den Geo ein und leg ihn neben das Handy. Fragt das Handy nach einer PIN: Bei einem Geo mit Display (L1 Pro, X1) ist es die Zahl auf dem Display des Geos, bei einem Geo ohne Display (T1000-E) 123456. Ist der Geo mit einer anderen App verbunden (z. B. Meshtastic), trenne ihn dort zuerst.",
     "adicionar.ligar": "Mit Geo verbinden",
     "atualizar.titulo": "Geo aktualisieren",
     "atualizar.dica": "Für diesen Geo gibt es eine neuere Software-Version: {para} (er hat {de}).",
@@ -6852,6 +6907,7 @@ const TEXTOS = {
     "atualizar.explica": "Wir installieren Version {para} auf „{nome}“ (er hat {de}), über Bluetooth. Das kann mehrere Minuten dauern.",
     "atualizar.cuidados": "Lass das Handy neben dem Geo liegen und schließ die App nicht. Der Geo sollte mehr als halb geladen sein oder am Ladegerät hängen. Die Konfiguration deines Netzes bleibt erhalten.",
     "atualizar.pin": "Am Ende fragt das Handy vielleicht erneut nach der Bluetooth-PIN des Geos.",
+    "atualizar.licenca": "Auf den Geos läuft die Meshtastic®-Firmware, freie Software unter der Lizenz GPL-3.0. Quellcode dieser Version:",
     "atualizar.comecar": "Jetzt aktualisieren",
     "atualizar.agora_nao": "Nicht jetzt",
     "atualizar.a_descarregar": "Software wird heruntergeladen…",
@@ -6870,7 +6926,7 @@ const TEXTOS = {
     "adicionar.bateria_fraca": "Der Handy-Akku ist fast leer. Lade das Handy, bevor du anfängst: Bei wenig Akku kann es Bluetooth mittendrin abschalten.",
     "adicionar.falta_nome": "Gib dem Geo einen Namen (bis zu 24 Zeichen).",
     "adicionar.a_ligar": "Verbinde per Bluetooth mit dem Geo…",
-    "adicionar.emparelhar": "Erscheint „Kopplungsanfrage“ (evtl. als Benachrichtigung oben am Bildschirm), tippe auf „Koppeln“ und gib die PIN des Geos ein: Standard ist 123456.",
+    "adicionar.emparelhar": "Erscheint „Kopplungsanfrage“ (evtl. als Benachrichtigung oben am Bildschirm), tippe auf „Koppeln“ und gib die PIN ein: bei einem Geo mit Display (L1 Pro, X1) die Zahl auf dem Display des Geos, bei einem Geo ohne Display (T1000-E) 123456.",
     "adicionar.a_pedir": "Mit {geo} verbunden. Wird mit deinem Konto abgeglichen…",
     "adicionar.a_preparar": "Konfiguration deines Netzes wird vorbereitet…",
     "adicionar.a_gravar": "Wird auf den Geo geschrieben ({n} von {total}). Bleib in der Nähe und schließ die App nicht.",
@@ -6887,6 +6943,7 @@ const TEXTOS = {
     "adicionar.pin_novo": "Neue Bluetooth-PIN dieses Geos. Bewahre sie auf: Du brauchst sie, um ihn mit einem anderen Handy zu verbinden.",
     "adicionar.pin_igual": "Die Bluetooth-PIN des Geos hat sich nicht geändert: Um ihn mit einem anderen Handy zu verbinden, nutze dieselbe wie bisher (Standard: 123456).",
     "adicionar.pin_novo_ecra": "Um diesen Geo mit einem anderen Handy zu verbinden, nutze die PIN, die auf dem Display des Geos erscheint.",
+    "adicionar.pin_mesmo": "Die Bluetooth-PIN des Geos hat sich nicht geändert: Um ihn mit einem anderen Handy zu verbinden, nutze dieselbe wie bisher.",
     "adicionar.ceu": "Bring ihn an einen Ort mit freiem Himmel: Die erste Position kann 5 bis 15 Minuten dauern.",
     "adicionar.concluir": "Fertig",
     "adicionar.outra_vez": "Erneut versuchen",
@@ -6895,6 +6952,7 @@ const TEXTOS = {
     "adicionar.erro_servidor": "Der Server hat die Konfiguration nicht rechtzeitig vorbereitet. Versuch es gleich noch einmal; passiert das wieder, melde dich bei uns: ola@georede.com.",
     "adicionar.erro_definicoes": "Die Einstellungen des Geos konnten nicht gelesen werden. Schalte den Geo aus und wieder ein und versuch es noch einmal.",
     "adicionar.erro_gerido": "Dieser Geo wird von einem anderen Netz verwaltet. Bitte die bisherigen Besitzer, ihn freizugeben, oder setz den Geo auf Werkseinstellungen zurück.",
+    "adicionar.erro_gerido_meu": "Dieser Geo ist gegen Änderungen geschützt. Der Server hebt den Schutz auf: Lass die App ein, zwei Minuten mit ihm verbunden und füge ihn dann erneut hinzu.",
     "adicionar.erro_chaves": "Dieser Geo nimmt bereits Befehle von drei anderen Admins an. Setz den Geo auf Werkseinstellungen zurück und versuch es noch einmal.",
     "adicionar.erro_caiu": "Die Verbindung zum Geo ist mittendrin abgebrochen. Bring den Geo näher ans Handy und versuch es noch einmal.",
     "adicionar.erro_caiu_passo": "Die Verbindung zum Geo ist beim Schreiben von „{o}“ abgebrochen ({n} von {total}): {motivo}. Der Geo hat nichts gespeichert. Bring ihn näher ans Handy und versuch es noch einmal.",
@@ -6905,6 +6963,7 @@ const TEXTOS = {
     "adicionar.falta_canais": "Kanäle",
     "adicionar.falta_nome_geo": "Name",
     "adicionar.falta_chave": "Admin-Schlüssel",
+    "adicionar.falta_mqtt": "die Brücke übers Handy (der Geo ignoriert MQTT noch)",
     "aparelhos.vazio": "In diesem Netz gibt es noch keine Geos. Du kannst schon in der App mit der Familie schreiben; um einen Geo hinzuzufügen, tippe auf „Geo hinzufügen“.",
     "nome.campo": "Name des Geos",
     "nome.guardar": "Namen speichern",
@@ -6930,6 +6989,8 @@ const TEXTOS = {
     "espera.nao_feches": "Schließ die App nicht und entferne den Geo nicht, bis alles fertig ist.",
     "libertacao.titulo": "Geo freigeben",
     "libertacao.pendente": "Warte auf „{nome}“. Lass ihn eingeschaltet und in Reichweite deines Netzes (beim Leuchtturm oder beim per Bluetooth verbundenen Handy).",
+    "libertacao.liga_o_geo": "Schalte den Geo ein und bring ihn ans Handy: Der Auftrag geht raus, sobald sich die App mit ihm verbindet.",
+    "libertar.segurar": "Gedrückt halten zum Bestätigen",
     "libertacao.a_trabalhar": "„{nome}“ wird freigegeben… Schritt {n} von {total}. Schalte den Geo nicht aus.",
     "libertacao.repetir": "Der Geo hat noch nicht geantwortet. Der Server versucht es von selbst erneut.",
     "libertacao.feito": "„{nome}“ ist frei. Er ist jetzt ein normales Meshtastic-Gerät: Du kannst ihn mit der Meshtastic-App verwenden.",
@@ -6940,6 +7001,7 @@ const TEXTOS = {
     "libertacao.esquecido": "Das Handy hat die Verbindung getrennt und diesen Geo vergessen. Du kannst ihn mit der Meshtastic-App verbinden.",
     "libertacao.esquecer_mao": "Zum Schluss im Bluetooth des Handys vergessen: Einstellungen › Bluetooth, Geo antippen und „Entkoppeln“.",
     "libertacao.abrir_bt": "Bluetooth-Einstellungen öffnen",
+    "libertacao.desliga_liga": "Schalte den Geo jetzt aus und wieder ein: Erst dann ist er im Werkszustand und wieder per Bluetooth sichtbar.",
     "perdido.botao": "Verloren",
     "perdido.confirmar": "„{nome}“ verloren? Er wird aus deinem Konto und von der Karte entfernt, und zur Sicherheit werden die Schlüssel deines Netzes auf allen deinen Geos getauscht (per Funk, einer nach dem anderen; der Farol zuletzt). Ein paar Minuten lang kann das Netz zwischen Geos mit neuen und solchen mit alten Schlüsseln ausfallen. Wer außer Reichweite ist, bekommt sie, sobald er zurück ist. Findest du ihn wieder, melde dich bei uns, um ihn neu zu registrieren.",
     "perdido.feito": "„{nome}“ ist nicht mehr in deinem Konto. Die Schlüssel deines Netzes werden auf den anderen Geos getauscht.",
@@ -6997,7 +7059,7 @@ const TEXTOS = {
     "canal.nome_dica": "Bis zu 11 Zeichen. Wer die Einladung hat, liest und schreibt im Kanal.",
     "canal.criar_botao": "Erstellen",
     "canal.convite_rotulo": "Link oder Code der Einladung",
-    "canal.convite_dica": "Füge hier den erhaltenen Link ein. Meshtastic-Kanal-Links gehen auch.",
+    "canal.convite_dica": "Füge hier den erhaltenen GEOREDE-Einladungslink ein.",
     "canal.juntar_botao": "Beitreten",
     "canal.juntar_dica": "Der Kanal wird auf {nome} gespeichert. Die Familie bleibt getrennt.",
     "canal.cancelar": "Jetzt nicht",
@@ -7120,13 +7182,15 @@ const TEXTOS = {
     "msg.rapida_buscar": "Hol mich ab",
     "msg.rapida_onde": "Wo bist du?",
     "msg.tocar_ok": "Anfrage gesendet: {nome} klingelt, sobald er in Reichweite ist.",
-    "msg.posicao": "Position aktualisieren",
+    "msg.posicao": "Position jetzt abfragen",
     "msg.posicao_pedido": "Anfrage an {nome} gesendet. Die Position erscheint hier, sobald er antwortet (bis zu anderthalb Minuten).",
     "msg.posicao_ok": "{nome} hat geantwortet ✓ Position {quando} ermittelt.",
     "msg.posicao_sem_gps": "{nome} hat geantwortet, hat aber noch kein GPS. Bring ihn ins Freie und versuch es in 3 Minuten erneut.",
     "msg.posicao_sem_resposta": "{nome} hat nicht geantwortet. Er ist vielleicht außer Reichweite oder sein Funk schläft.",
     "msg.posicao_espera": "Du hast gerade erst gefragt: Der Geo beantwortet nur eine Positionsanfrage alle 3 Minuten.",
     "msg.posicao_sem_radio": "Um die Position abzufragen, verbinde die App per Bluetooth mit einem Geo (unter Mehr).",
+    "msg.posicao_pedido_servidor": "Anfrage über den Server an {nome} gesendet. Die Position erscheint auf der Karte, sobald der Geo antwortet.",
+    "msg.posicao_limite": "Du hast die Position dieses Geos in den letzten 4 Stunden schon sehr oft abgefragt. Der Funk wird geteilt: warte auf die automatische Position (höchstens alle 5 Min., wenn sich der Geo bewegt).",
     "msg.voltar": "Zurück zu den Unterhaltungen",
     "msg.tocar": "Klingeln lassen",
     "msg.ver_mapa": "Auf der Karte",
@@ -7217,6 +7281,7 @@ const TEXTOS = {
     "zona.nome_exemplo": "Zuhause, Schule, Garage…",
     "zona.mudar_nome": "{nome}. Zone umbenennen",
     "zona.raio": "Radius",
+    "zona.raio_pequeno": "Kleine Zone: Die Geos senden ihre Position unterwegs höchstens alle 5 Min. und erst, wenn sie 50 m von der letzten entfernt sind. Wer hineinkommt und gleich am Eingang stehen bleibt, erscheint vielleicht erst nach 1 Stunde in der Zone. Ab 75 m Radius ist die Ankunftsmeldung zuverlässiger.",
     "zona.quando_rotulo": "Wann melden",
     "zona.avisar_quando": "Melden beim",
     "zona.sair": "Verlassen der Zone",
@@ -9239,6 +9304,7 @@ function abrirEditor(z) {
   mostrarNomeZona(!novo);
   document.getElementById("zona-raio").value = Math.min(2000, ed.raio);
   document.getElementById("zona-raio-valor").textContent = t("unidade.m", { m: ed.raio });
+  avisoRaioZona(ed.raio);
   document.getElementById("zona-sair").checked = ed.sair;
   document.getElementById("zona-entrar").checked = ed.entrar;
   document.querySelector(`input[name=zona-quais][value=${ed.aparelhos ? "alguns" : "todos"}]`).checked = true;
@@ -9275,11 +9341,16 @@ function raioPadrao() {
   try { const r = Number(localStorage.getItem("georede-zona-raio")); if (r >= 30 && r <= 2000) return r; } catch (e) { /* nada */ }
   return 80;
 }
+// 25/11/2026: com as regras da comunidade Meshtastic (posição no máximo de 5 em 5 min, 50 m), numa zona com menos de
+// ~150 m de largura a entrada pode só ser vista ao fim de 1 h (entra e pára a menos de 50 m da última posição enviada)
+const ZONA_RAIO_AVISO = 75;
+function avisoRaioZona(r) { const a = document.getElementById("zona-raio-aviso"); if (a) a.hidden = !(r < ZONA_RAIO_AVISO); }
 function mudarRaioZona(r) {
   if (!estado.editor) return;
   estado.editor.raio = r;
   document.getElementById("zona-raio").value = Math.min(2000, r);
   document.getElementById("zona-raio-valor").textContent = t("unidade.m", { m: r });
+  avisoRaioZona(r);
   desenharFichasZona(); desenharZonasMapa();
 }
 function desenharFichasZona() {
@@ -9699,8 +9770,19 @@ function desenharProcuras() {
     const parar = document.createElement("button"); parar.type = "button";
     parar.textContent = t("procurar.parar");
     parar.addEventListener("click", () => pedirProcura(node, false, parar));
-    acoes.append(ir, mais, parar);
-    c.append(l1, l2, acoes);
+    acoes.append(ir);
+    // 25/11/2026: no modo Procurar o Geo segue o ritmo normal (no máximo de 5 em 5 min a andar, regras da comunidade
+    // Meshtastic); entre duas posições, «Pedir posição agora» (com limite: pedirPosicao)
+    if (!a || !SEM_TOCAR.includes(a.perfil)) {
+      const pos = document.createElement("button"); pos.type = "button";
+      pos.textContent = t("msg.posicao");
+      pos.addEventListener("click", () => pedirPosicao(node, nomeGeo(node), "procura-msg-" + node));
+      acoes.append(pos);
+    }
+    acoes.append(mais, parar);
+    const msgP = document.createElement("p"); msgP.className = "msg"; msgP.id = "procura-msg-" + node;
+    msgP.setAttribute("role", "status"); msgP.hidden = true;
+    c.append(l1, l2, acoes, msgP);
     div.append(c);
   }
 }
@@ -10727,19 +10809,40 @@ async function fazerTocar(nodeId, nome, onde) {
 // o Geo responde com a posição que tem. Sem GPS no momento, responde com a última que guardou (com a hora dela),
 // por isso mostramos sempre QUANDO foi obtida. O firmware só responde a um pedido a cada 3 minutos.
 // Por agora só pela rádio (Bluetooth); pelo servidor (sem Bluetooth) fica para a fase 2.
+// 25/11/2026: sem Bluetooth, o pedido vai pelo servidor (tipo pedir_posicao, pelo Farol ou pela ponte de outro
+// telemóvel). Limite (regras da comunidade Meshtastic: a rádio é partilhada): um pedido a cada 3 minutos (o firmware não
+// responde mais depressa) e no máximo POSICAO_MAX em 4 horas, por Geo; o servidor também conta.
 const POSICAO_ESPERA_MS = 90 * 1000, POSICAO_INTERVALO_MS = 3 * 60 * 1000;
+const POSICAO_MAX = 30, POSICAO_JANELA_MS = 4 * 3600 * 1000;
 var posicaoPedidos = new Map();      // nó → { nome, onde, temporizador }
 var posicaoUltimo = new Map();       // nó → quando pedimos pela última vez (ms)
+var posicaoHistorico = new Map();    // nó → horas dos pedidos (ms) nas últimas 4 h
+function posicaoContar(num, agora) {
+  const lista = (posicaoHistorico.get(num) || []).filter(h => agora - h < POSICAO_JANELA_MS);
+  posicaoHistorico.set(num, lista);
+  return lista.length;
+}
+async function pedirPosicaoServidor(nodeId, nome, onde) {
+  try {
+    const r = await enviar("/api/mensagens", { conversa: Number(nodeId), tipo: "pedir_posicao" });
+    mensagem(onde, r.ok ? t("msg.posicao_pedido_servidor", { nome }) : (r.corpo.erro || t("erro.pedido")), !r.ok);
+    return r.ok;
+  } catch (e) { if (e.message !== "sessão expirada") mensagem(onde, t("erro.sem_ligacao"), true); return false; }
+}
 async function pedirPosicao(nodeId, nome, onde) {
-  if (!radioParaMensagens() || !radio.meu) { mensagem(onde, t("msg.posicao_sem_radio"), true); return; }
   const num = Number(nodeId) >>> 0, agora = Date.now();
   if (agora - (posicaoUltimo.get(num) || 0) < POSICAO_INTERVALO_MS) { mensagem(onde, t("msg.posicao_espera"), true); return; }
+  if (posicaoContar(num, agora) >= POSICAO_MAX) { mensagem(onde, t("msg.posicao_limite"), true); return; }
+  if (!radioParaMensagens() || !radio.meu) {
+    if (await pedirPosicaoServidor(nodeId, nome, onde)) { posicaoUltimo.set(num, agora); posicaoHistorico.get(num).push(agora); }
+    return;
+  }
   // mesmo canal das mensagens diretas e do «Fazer tocar» (canal 0; o firmware cifra-o com a chave pessoal do Geo)
   const pacote = { to: num, channel: 0, id: radioIdPacote(), want_ack: false,
                    decoded: { portnum: RADIO.PORTA.POSICAO, payload: new Uint8Array(), want_response: true } };
   try { await radioEscrever(GeoProto.codificar("ToRadio", { packet: pacote })); }
   catch (e) { mensagem(onde, t("radio.falha_envio"), true); return; }
-  posicaoUltimo.set(num, agora);
+  posicaoUltimo.set(num, agora); posicaoHistorico.get(num).push(agora);
   const antes = posicaoPedidos.get(num); if (antes) clearTimeout(antes.temporizador);
   posicaoPedidos.set(num, { nome, onde, temporizador: setTimeout(() => {
     posicaoPedidos.delete(num); mensagem(onde, t("msg.posicao_sem_resposta", { nome }), true);
@@ -11842,15 +11945,15 @@ function caixaApagarRota(r) {
 
 // ---- avisos de cada Geo (recomendados por perfil; o cliente pode mudar)
 const SEM_ZONAS = ["casa", "solar"];
-estado.avisos = { geos: null, opcoes: [15, 30, 120, 720], aberto: null, aCarregar: false };
-function textoMinutos(n) { return n >= 60 ? t("avisos.horas", { n: n / 60 }) : t("avisos.min", { n }); }
+estado.avisos = { geos: null, opcoes: [75, 120, 720], aberto: null, aCarregar: false };
+function textoMinutos(n) { return n >= 60 && n % 60 === 0 ? t("avisos.horas", { n: n / 60 }) : t("avisos.min", { n }); }
 function resumoAvisos(g) {
   const a = g.avisos, partes = [];
   if (!SEM_ZONAS.includes(g.perfil)) {
     if (a.sair) partes.push(t("avisos.r_sair"));
     if (a.entrar) partes.push(t("avisos.r_entrar"));
   }
-  if (a.sem_sinal_min) partes.push(t("avisos.r_sinal", { t: a.sem_sinal_min >= 60 ? t("avisos.curto_h", { n: a.sem_sinal_min / 60 }) : t("avisos.curto_min", { n: a.sem_sinal_min }) }));
+  if (a.sem_sinal_min) partes.push(t("avisos.r_sinal", { t: a.sem_sinal_min >= 60 && a.sem_sinal_min % 60 === 0 ? t("avisos.curto_h", { n: a.sem_sinal_min / 60 }) : t("avisos.curto_min", { n: a.sem_sinal_min }) }));
   if (a.bateria) partes.push(t("avisos.r_bateria"));
   const r = partes.length ? partes.join(" · ") : t("avisos.resumo_vazio");
   return r.charAt(0).toUpperCase() + r.slice(1);
@@ -12143,6 +12246,15 @@ mapa.on("load", () => {
 // Só o necessário: varint, 32/64 bits fixos, comprimento (string, bytes, mensagem), repetidos (packed ou não).
 "use strict";
 const GeoProto = (function () {
+  // ---------------------------------------------------------------------------------------------------------------
+  // A tabela ESQ abaixo (nomes, números e tipos dos campos) é gerada pelo ferramentas/proto2schema.py a partir das
+  // definições .proto oficiais do Meshtastic: https://github.com/meshtastic/protobufs
+  // Copyright (C) Meshtastic LLC e contribuidores. Distribuído sob a GNU General Public License, versão 3 (GPL-3.0):
+  // https://github.com/meshtastic/protobufs/blob/master/LICENSE
+  // Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.
+  // A GEOREDE não é afiliada nem apoiada pela Meshtastic LLC. / GEOREDE is not affiliated with or endorsed by Meshtastic LLC.
+  // O resto deste bloco (codificador e descodificador GeoProto) foi escrito pela GEOREDE; a app é GPL-3.0 (NOTICE.md).
+  // ---------------------------------------------------------------------------------------------------------------
   const ESQ = {"messages":{"AdminMessage":[{"name":"get_channel_request","num":1,"type":"uint32","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"get_channel_response","num":2,"type":"Channel","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"set_channel","num":33,"type":"Channel","kind":"message","repeated":false,"oneof":"payload_variant"}],"ChannelSet":[{"name":"settings","num":1,"type":"ChannelSettings","kind":"message","repeated":true}],"User":[{"name":"id","num":1,"type":"string","kind":"scalar","repeated":false},{"name":"long_name","num":2,"type":"string","kind":"scalar","repeated":false},{"name":"short_name","num":3,"type":"string","kind":"scalar","repeated":false},{"name":"macaddr","num":4,"type":"bytes","kind":"scalar","repeated":false},{"name":"hw_model","num":5,"type":"HardwareModel","kind":"enum","repeated":false},{"name":"is_licensed","num":6,"type":"bool","kind":"scalar","repeated":false},{"name":"role","num":7,"type":"Config.DeviceConfig.Role","kind":"enum","repeated":false},{"name":"public_key","num":8,"type":"bytes","kind":"scalar","repeated":false},{"name":"is_unmessagable","num":9,"type":"bool","kind":"scalar","repeated":false,"optional":true}],"Position":[{"name":"latitude_i","num":1,"type":"sfixed32","kind":"scalar","repeated":false,"optional":true},{"name":"longitude_i","num":2,"type":"sfixed32","kind":"scalar","repeated":false,"optional":true},{"name":"altitude","num":3,"type":"int32","kind":"scalar","repeated":false,"optional":true},{"name":"time","num":4,"type":"fixed32","kind":"scalar","repeated":false},{"name":"location_source","num":5,"type":"Position.LocSource","kind":"enum","repeated":false},{"name":"altitude_source","num":6,"type":"Position.AltSource","kind":"enum","repeated":false},{"name":"timestamp","num":7,"type":"fixed32","kind":"scalar","repeated":false},{"name":"timestamp_millis_adjust","num":8,"type":"int32","kind":"scalar","repeated":false},{"name":"altitude_hae","num":9,"type":"sint32","kind":"scalar","repeated":false,"optional":true},{"name":"altitude_geoidal_separation","num":10,"type":"sint32","kind":"scalar","repeated":false,"optional":true},{"name":"PDOP","num":11,"type":"uint32","kind":"scalar","repeated":false},{"name":"HDOP","num":12,"type":"uint32","kind":"scalar","repeated":false},{"name":"VDOP","num":13,"type":"uint32","kind":"scalar","repeated":false},{"name":"gps_accuracy","num":14,"type":"uint32","kind":"scalar","repeated":false},{"name":"ground_speed","num":15,"type":"uint32","kind":"scalar","repeated":false,"optional":true},{"name":"ground_track","num":16,"type":"uint32","kind":"scalar","repeated":false,"optional":true},{"name":"fix_quality","num":17,"type":"uint32","kind":"scalar","repeated":false},{"name":"fix_type","num":18,"type":"uint32","kind":"scalar","repeated":false},{"name":"sats_in_view","num":19,"type":"uint32","kind":"scalar","repeated":false},{"name":"sensor_id","num":20,"type":"uint32","kind":"scalar","repeated":false},{"name":"next_update","num":21,"type":"uint32","kind":"scalar","repeated":false},{"name":"seq_number","num":22,"type":"uint32","kind":"scalar","repeated":false},{"name":"precision_bits","num":23,"type":"uint32","kind":"scalar","repeated":false}],"Routing":[{"name":"error_reason","num":3,"type":"Routing.Error","kind":"enum","repeated":false,"oneof":"variant"},{"name":"ack_proof","num":4,"type":"bytes","kind":"scalar","repeated":false}],"Telemetry":[{"name":"time","num":1,"type":"fixed32","kind":"scalar","repeated":false},{"name":"device_metrics","num":2,"type":"DeviceMetrics","kind":"message","repeated":false,"oneof":"variant"}],"DeviceMetrics":[{"name":"battery_level","num":1,"type":"uint32","kind":"scalar","repeated":false,"optional":true},{"name":"voltage","num":2,"type":"float","kind":"scalar","repeated":false,"optional":true},{"name":"channel_utilization","num":3,"type":"float","kind":"scalar","repeated":false,"optional":true},{"name":"air_util_tx","num":4,"type":"float","kind":"scalar","repeated":false,"optional":true},{"name":"uptime_seconds","num":5,"type":"uint32","kind":"scalar","repeated":false,"optional":true}],"FromRadio":[{"name":"id","num":1,"type":"uint32","kind":"scalar","repeated":false},{"name":"packet","num":2,"type":"MeshPacket","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"my_info","num":3,"type":"MyNodeInfo","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"config","num":5,"type":"bytes","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"moduleConfig","num":9,"type":"bytes","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"node_info","num":4,"type":"NodeInfo","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"config_complete_id","num":7,"type":"uint32","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"rebooted","num":8,"type":"bool","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"channel","num":10,"type":"Channel","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"queueStatus","num":11,"type":"QueueStatus","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"metadata","num":13,"type":"DeviceMetadata","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"mqttClientProxyMessage","num":14,"type":"MqttClientProxyMessage","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"clientNotification","num":16,"type":"ClientNotification","kind":"message","repeated":false,"oneof":"payload_variant"}],"MqttClientProxyMessage":[{"name":"topic","num":1,"type":"string","kind":"scalar","repeated":false},{"name":"data","num":2,"type":"bytes","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"text","num":3,"type":"string","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"retained","num":4,"type":"bool","kind":"scalar","repeated":false}],"ClientNotification":[{"name":"reply_id","num":1,"type":"uint32","kind":"scalar","repeated":false,"optional":true},{"name":"time","num":2,"type":"fixed32","kind":"scalar","repeated":false},{"name":"level","num":3,"type":"LogRecord.Level","kind":"enum","repeated":false},{"name":"message","num":4,"type":"string","kind":"scalar","repeated":false},{"name":"type","num":5,"type":"ClientNotification.NotificationType","kind":"enum","repeated":false}],"DeviceMetadata":[{"name":"firmware_version","num":1,"type":"string","kind":"scalar","repeated":false},{"name":"device_state_version","num":2,"type":"uint32","kind":"scalar","repeated":false},{"name":"canShutdown","num":3,"type":"bool","kind":"scalar","repeated":false},{"name":"hasWifi","num":4,"type":"bool","kind":"scalar","repeated":false},{"name":"hasBluetooth","num":5,"type":"bool","kind":"scalar","repeated":false},{"name":"hasEthernet","num":6,"type":"bool","kind":"scalar","repeated":false},{"name":"role","num":7,"type":"Config.DeviceConfig.Role","kind":"enum","repeated":false},{"name":"position_flags","num":8,"type":"uint32","kind":"scalar","repeated":false},{"name":"hw_model","num":9,"type":"HardwareModel","kind":"enum","repeated":false},{"name":"hasRemoteHardware","num":10,"type":"bool","kind":"scalar","repeated":false},{"name":"hasPKC","num":11,"type":"bool","kind":"scalar","repeated":false},{"name":"excluded_modules","num":12,"type":"uint32","kind":"scalar","repeated":false},{"name":"has_xeddsa","num":14,"type":"bool","kind":"scalar","repeated":false},{"name":"ble_address","num":17,"type":"string","kind":"scalar","repeated":false}],"QueueStatus":[{"name":"res","num":1,"type":"int32","kind":"scalar","repeated":false},{"name":"free","num":2,"type":"uint32","kind":"scalar","repeated":false},{"name":"maxlen","num":3,"type":"uint32","kind":"scalar","repeated":false},{"name":"mesh_packet_id","num":4,"type":"uint32","kind":"scalar","repeated":false}],"Channel":[{"name":"index","num":1,"type":"int32","kind":"scalar","repeated":false},{"name":"settings","num":2,"type":"ChannelSettings","kind":"message","repeated":false},{"name":"role","num":3,"type":"Channel.Role","kind":"enum","repeated":false}],"ChannelSettings":[{"name":"channel_num","num":1,"type":"uint32","kind":"scalar","repeated":false},{"name":"psk","num":2,"type":"bytes","kind":"scalar","repeated":false},{"name":"name","num":3,"type":"string","kind":"scalar","repeated":false},{"name":"id","num":4,"type":"fixed32","kind":"scalar","repeated":false},{"name":"uplink_enabled","num":5,"type":"bool","kind":"scalar","repeated":false},{"name":"downlink_enabled","num":6,"type":"bool","kind":"scalar","repeated":false},{"name":"module_settings","num":7,"type":"ModuleSettings","kind":"message","repeated":false},{"name":"use_aead","num":8,"type":"bool","kind":"scalar","repeated":false}],"ModuleSettings":[{"name":"position_precision","num":1,"type":"uint32","kind":"scalar","repeated":false},{"name":"is_muted","num":2,"type":"bool","kind":"scalar","repeated":false}],"NodeInfo":[{"name":"num","num":1,"type":"uint32","kind":"scalar","repeated":false},{"name":"user","num":2,"type":"User","kind":"message","repeated":false},{"name":"position","num":3,"type":"Position","kind":"message","repeated":false},{"name":"snr","num":4,"type":"float","kind":"scalar","repeated":false},{"name":"last_heard","num":5,"type":"fixed32","kind":"scalar","repeated":false},{"name":"device_metrics","num":6,"type":"DeviceMetrics","kind":"message","repeated":false},{"name":"channel","num":7,"type":"uint32","kind":"scalar","repeated":false},{"name":"via_mqtt","num":8,"type":"bool","kind":"scalar","repeated":false},{"name":"hops_away","num":9,"type":"uint32","kind":"scalar","repeated":false,"optional":true},{"name":"is_favorite","num":10,"type":"bool","kind":"scalar","repeated":false},{"name":"is_ignored","num":11,"type":"bool","kind":"scalar","repeated":false},{"name":"is_key_manually_verified","num":12,"type":"bool","kind":"scalar","repeated":false},{"name":"is_muted","num":13,"type":"bool","kind":"scalar","repeated":false},{"name":"has_xeddsa_signed","num":14,"type":"bool","kind":"scalar","repeated":false},{"name":"heard_on_current_lora","num":15,"type":"bool","kind":"scalar","repeated":false}],"MyNodeInfo":[{"name":"my_node_num","num":1,"type":"uint32","kind":"scalar","repeated":false},{"name":"reboot_count","num":8,"type":"uint32","kind":"scalar","repeated":false},{"name":"min_app_version","num":11,"type":"uint32","kind":"scalar","repeated":false},{"name":"device_id","num":12,"type":"bytes","kind":"scalar","repeated":false},{"name":"pio_env","num":13,"type":"string","kind":"scalar","repeated":false},{"name":"firmware_edition","num":14,"type":"FirmwareEdition","kind":"enum","repeated":false},{"name":"nodedb_count","num":15,"type":"uint32","kind":"scalar","repeated":false}],"MeshPacket":[{"name":"from","num":1,"type":"fixed32","kind":"scalar","repeated":false},{"name":"to","num":2,"type":"fixed32","kind":"scalar","repeated":false},{"name":"channel","num":3,"type":"uint32","kind":"scalar","repeated":false},{"name":"decoded","num":4,"type":"Data","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"encrypted","num":5,"type":"bytes","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"id","num":6,"type":"fixed32","kind":"scalar","repeated":false},{"name":"rx_time","num":7,"type":"fixed32","kind":"scalar","repeated":false,"optional":true},{"name":"rx_snr","num":8,"type":"float","kind":"scalar","repeated":false},{"name":"hop_limit","num":9,"type":"uint32","kind":"scalar","repeated":false},{"name":"want_ack","num":10,"type":"bool","kind":"scalar","repeated":false},{"name":"priority","num":11,"type":"MeshPacket.Priority","kind":"enum","repeated":false},{"name":"rx_rssi","num":12,"type":"int32","kind":"scalar","repeated":false,"optional":true},{"name":"delayed","num":13,"type":"MeshPacket.Delayed","kind":"enum","repeated":false},{"name":"via_mqtt","num":14,"type":"bool","kind":"scalar","repeated":false},{"name":"hop_start","num":15,"type":"uint32","kind":"scalar","repeated":false},{"name":"public_key","num":16,"type":"bytes","kind":"scalar","repeated":false},{"name":"pki_encrypted","num":17,"type":"bool","kind":"scalar","repeated":false},{"name":"next_hop","num":18,"type":"uint32","kind":"scalar","repeated":false},{"name":"relay_node","num":19,"type":"uint32","kind":"scalar","repeated":false},{"name":"tx_after","num":20,"type":"uint32","kind":"scalar","repeated":false},{"name":"transport_mechanism","num":21,"type":"MeshPacket.TransportMechanism","kind":"enum","repeated":false},{"name":"xeddsa_signed","num":22,"type":"bool","kind":"scalar","repeated":false},{"name":"ack_proof_status","num":23,"type":"MeshPacket.AckProofStatus","kind":"enum","repeated":false},{"name":"slot_parity","num":24,"type":"MeshPacket.SlotParity","kind":"enum","repeated":false}],"Data":[{"name":"portnum","num":1,"type":"PortNum","kind":"enum","repeated":false},{"name":"payload","num":2,"type":"bytes","kind":"scalar","repeated":false},{"name":"want_response","num":3,"type":"bool","kind":"scalar","repeated":false},{"name":"dest","num":4,"type":"fixed32","kind":"scalar","repeated":false},{"name":"source","num":5,"type":"fixed32","kind":"scalar","repeated":false},{"name":"request_id","num":6,"type":"fixed32","kind":"scalar","repeated":false},{"name":"reply_id","num":7,"type":"fixed32","kind":"scalar","repeated":false},{"name":"emoji","num":8,"type":"fixed32","kind":"scalar","repeated":false},{"name":"bitfield","num":9,"type":"uint32","kind":"scalar","repeated":false,"optional":true},{"name":"xeddsa_signature","num":10,"type":"bytes","kind":"scalar","repeated":false}],"ToRadio":[{"name":"packet","num":1,"type":"MeshPacket","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"want_config_id","num":3,"type":"uint32","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"disconnect","num":4,"type":"bool","kind":"scalar","repeated":false,"oneof":"payload_variant"},{"name":"mqttClientProxyMessage","num":6,"type":"MqttClientProxyMessage","kind":"message","repeated":false,"oneof":"payload_variant"},{"name":"heartbeat","num":7,"type":"Heartbeat","kind":"message","repeated":false,"oneof":"payload_variant"}],"Heartbeat":[{"name":"nonce","num":1,"type":"uint32","kind":"scalar","repeated":false}]}};
   const VARINT = new Set(["int32", "int64", "uint32", "uint64", "sint32", "sint64", "bool"]);
   const FIX32 = new Set(["fixed32", "sfixed32", "float"]);
@@ -12353,6 +12465,21 @@ const GeoProto = (function () {
         connected: false,
         async connect() {
           await iniciar();
+          // 25/11/2026: ao adicionar um Geo, emparelhar ANTES de abrir a ligação. Se o PIN for pedido a meio, o Android
+          // estraga essa ligação (o Geo «não responde») e o serviço nativo cortava-a aos 20 s, com a pessoa a escrever.
+          // O plugin BluetoothLe espera aqui até o emparelhamento acabar (ou ser recusado).
+          if (window.georedeAdicionar) {
+            let par = null;
+            try { par = await plugin().isBonded({ deviceId: id }); } catch (e) { par = null; }
+            if (par && par.value === false) {
+              try { await plugin().createBond({ deviceId: id, timeout: 120000 }); }
+              catch (e) {
+                console.warn("Bluetooth: o emparelhamento falhou", e);
+                throw new Error("O emparelhamento não ficou feito (PIN errado ou cancelado). Tenta outra vez e escreve o PIN que aparece no ecrã do Geo.");
+              }
+              await new Promise(f => setTimeout(f, 1500));     // o Android acaba de arrumar o emparelhamento
+            }
+          }
           const R = radioNativo();
           if (R) {
             if (!d._desligarR) d._desligarR = await R.addListener("desligado", () => {
@@ -12697,16 +12824,42 @@ function radioMotivo(e) {
   if (/SecurityError|permission|allowed/i.test(s)) return t("radio.motivo_permissao");
   return s.slice(0, 120);
 }
+// 25/11/2026: a ligação tem limite de tempo. Se o Android pedir o PIN a meio, a ligação pode ficar encravada para
+// sempre (e a fila GATT com ela). Ao fim do limite fecha-se, limpa-se a fila e a ligação antiga deixa de contar
+// (geração): se ela acordar mais tarde, já não mexe em nada.
+const RADIO_LIGAR_MS = 45000;                 // ligar, serviço e notificações (inclui escrever o PIN, se for pedido)
+function radioComTempo(p, ms, motivo) {
+  let tm;
+  return Promise.race([p, new Promise((_, nao) => { tm = setTimeout(() => nao(new Error(motivo)), ms); })])
+    .finally(() => clearTimeout(tm));
+}
 async function radioConectar() {
+  const ger = radio.geracao = (radio.geracao || 0) + 1;
+  // ao adicionar: até 2 min para o PIN (emparelhar), mais a ligação e a configuração
+  const limite = window.georedeAdicionar ? 300000 : RADIO_LIGAR_MS + RADIO.ESPERA_CONFIG_MS + 5000;
+  try {
+    return await radioComTempo(radioConectarPassos(ger), limite, "tempo esgotado a ligar ao Geo (GATT)");
+  } catch (e) {
+    if (radio.geracao === ger && /tempo esgotado/.test(String((e && e.message) || ""))) {
+      radio.geracao++; radio.cars = null; radio.fila = Promise.resolve();
+      try { const g = radio.dispositivo && radio.dispositivo.gatt; if (g && g.connected) g.disconnect(); } catch (x) { /* nada */ }
+      console.warn("rádio: a ligação ao Geo não acabou a tempo; fechada");
+    }
+    throw e;
+  }
+}
+async function radioConectarPassos(ger) {
+  const vale = () => { if (radio.geracao !== ger) { const e = new Error("ligação substituída"); e.obsoleta = true; throw e; } };
   radio.estado = "a_ligar"; radio.motivo = ""; desenharRadio();
-  const servidor = await radio.dispositivo.gatt.connect();
-  const servico = await servidor.getPrimaryService(RADIO.UUID.servico);
+  const servidor = await radio.dispositivo.gatt.connect(); vale();
+  const servico = await servidor.getPrimaryService(RADIO.UUID.servico); vale();
   const [paraRadio, doRadio, numero] = await Promise.all([
     servico.getCharacteristic(RADIO.UUID.paraRadio), servico.getCharacteristic(RADIO.UUID.doRadio), servico.getCharacteristic(RADIO.UUID.numero)]);
+  vale();
   radio.cars = { paraRadio, doRadio, numero };
   numero.addEventListener("characteristicvaluechanged", () => radioDrenar());
-  await numero.startNotifications();
-  await radioConfigurar();
+  await numero.startNotifications(); vale();
+  await radioConfigurar(); vale();
   // A app não fica ligada a um Geo de outra rede, nem com a conta da equipa: desliga e avisa
   if (radioDeOutraRede()) { await radioDesligar(); throw new Error("outra_rede"); }
   radio.estado = "ligado"; radio.tentativa = 0; desenharRadio();
@@ -12736,7 +12889,15 @@ async function radioConfigurar() {
   radio.nonce = radioIdPacote() & 0x7fffffff; radio.configCompleta = false; radio.canais = []; radio.dispositivoConfig = null; radio.baseFeito = null;
   await radioEscrever(GeoProto.codificar("ToRadio", { want_config_id: radio.nonce }));
   const limite = Date.now() + (window.georedeAdicionar ? 90000 : RADIO.ESPERA_CONFIG_MS);   // a emparelhar: o PIN demora
+  // 25/11/2026: se a ligação cair e voltar a meio (acontece logo a seguir ao PIN), o pedido perdeu-se e o Geo nunca
+  // responde a este número: volta-se a pedir de 10 em 10 s, com o mesmo número, até a configuração chegar
+  let pedidoEm = Date.now();
   while (Date.now() < limite) {
+    if (Date.now() - pedidoEm > 10000) {
+      pedidoEm = Date.now();
+      try { await radioEscrever(GeoProto.codificar("ToRadio", { want_config_id: radio.nonce })); console.warn("rádio: configuração pedida outra vez"); }
+      catch (e) { /* a ligação ainda não voltou: tenta-se na volta seguinte */ }
+    }
     const b = await radioLerUm();
     if (!b.length) { await radioEsperar(150); continue; }
     try { radioTratar(GeoProto.descodificar("FromRadio", b)); } catch (e) { console.warn("rádio: mensagem ilegível na configuração", e); }
@@ -12874,7 +13035,8 @@ function radioIniciarHeartbeat() {
     radioEscrever(GeoProto.codificar("ToRadio", { heartbeat: { nonce: 0 } })).catch(() => null);
   }, RADIO.HEARTBEAT_MS);
 }
-function radioCaiu() {
+function radioCaiu(e) {
+  if (e && e.obsoleta) return;                       // uma ligação antiga, já substituída por outra (25/11/2026)
   if (window.adicionarCaiu) adicionarCaiu();
   radio.cars = null; clearInterval(radio.heartbeat);
   for (const [, p] of radio.pendentes) clearTimeout(p.temporizador);
@@ -12966,7 +13128,7 @@ function radioTratar(fr) {
 function radioNoInfo(ni) {
   if (!ni || ni.num == null) return;
   const num = ni.num >>> 0, n = radioNo(num);
-  if (ni.user) { if (ni.user.long_name) n.nome = ni.user.long_name; if (ni.user.short_name) n.curto = ni.user.short_name; n.chave = !!(ni.user.public_key && ni.user.public_key.length === 32); }
+  if (ni.user) { if (ni.user.long_name) n.nome = ni.user.long_name; if (ni.user.short_name) n.curto = ni.user.short_name; n.chave = !!(ni.user.public_key && ni.user.public_key.length === 32); if (n.chave) { let s = ""; for (const x of ni.user.public_key) s += String.fromCharCode(x); n.publica = btoa(s); } }
   if (ni.last_heard) n.visto = radioHoraPacote(ni.last_heard);
   if (ni.position && ni.position.latitude_i != null && ni.position.longitude_i != null && (ni.position.latitude_i || ni.position.longitude_i)) {
     const h = radioHoraPacote(ni.position.time || ni.last_heard);
@@ -13434,7 +13596,7 @@ function ponteGuardarSubida(m) {
   ponteAgendar(250);
 }
 // Quem decide se o Geo é desta conta é o servidor (404: a ponte para um minuto). Também serve a um Geo já libertado
-// cuja libertação por rádio ainda decorre (já não aparece na lista). Sem conta (modo de emergência) não há ponte.
+// cuja remoção por rádio ainda decorre (já não aparece na lista). Sem conta (modo de emergência) não há ponte.
 function ponteMeuGeo() {
   if (!radio.meu || !radio.meu.num || window.georedeEmergencia || saiuDaConta() || window.georedeAdicionar) return null;
   return radio.meu.num >>> 0;
@@ -13675,7 +13837,7 @@ function radioIndiceCanal(nome) {
 function conversaDeCanal(k) { return String(k).startsWith("canal:"); }
 function conversaSoRadio(k) { return k === "publico" || conversaDeFora(k) || conversaDeCanal(k); }
 
-// ---- convites: link https://…/mensagens?canal=CÓDIGO (código = versão, nome, chave). Também links do Meshtastic.
+// ---- convites: link https://…/mensagens?canal=CÓDIGO (código = versão, nome, chave). Só da GEOREDE (25/11/2026).
 function canalCodigo(nome, chave) {
   const n = new TextEncoder().encode(nome);
   const b = new Uint8Array(2 + n.length + chave.length); b[0] = CANAL.VERSAO; b[1] = n.length; b.set(n, 2); b.set(chave, 2 + n.length);
@@ -13686,17 +13848,10 @@ function canalLerConvite(texto) {
   texto = String(texto || "").trim();
   if (!texto) return null;
   try {
-    const m = texto.match(/meshtastic\.org\/e\/[^#]*#(.+)$/i);
-    if (m) {                                                    // ChannelSet do Meshtastic: o primeiro canal
-      const cs = GeoProto.descodificar("ChannelSet", deB64u(m[1].split(/[?&]/)[0]));
-      const s = (cs.settings || [])[0];
-      if (!s) return null;
-      const chave = s.psk || new Uint8Array(0);
-      let nome = (s.name || "").trim();
-      if (chave.length <= 1 && !nome) nome = "LongFast";
-      if (!nome || chave.length > 32 || (chave.length > 1 && chave.length !== 16 && chave.length !== 32)) return null;
-      return { nome, chave, publico: chave.length <= 1 };
-    }
+    // 25/11/2026 (pedido da Meshtastic): a GEOREDE não usa o esquema de links do Meshtastic (meshtastic.org/e/#…),
+    // nem para ler: só os convites da GEOREDE (app.georede.com/mensagens?canal=…). O canal público junta-se no botão
+    // próprio («Juntar ao canal público»).
+    if (/meshtastic\.org\//i.test(texto)) return null;
     let codigo = texto;
     const q = texto.match(/[?&]canal=([A-Za-z0-9_\-]+)/);
     if (q) codigo = q[1];
@@ -14747,7 +14902,8 @@ $s("seta-parar").addEventListener("click", () => encontroAcao("parar"));
 // não as lê nem guarda. As definições do Geo (rádio, perfil, Bluetooth, segurança…) não vão ao servidor: a app junta-lhes
 // o «remendo» que o servidor mandou (campos acrescentados ao fim ganham) e, na segurança, só a chave pública do servidor.
 "use strict";
-const ADIC = { PREPARAR_MS: 60000, REINICIAR_MS: 120000, SEM_QUEDA_MS: 25000, ENTRE_ESCRITAS_MS: 500, PORTA_ADMIN: 6,
+const ADIC = { PREPARAR_MS: 60000, REINICIAR_MS: 120000, SEM_QUEDA_MS: 25000, ENTRE_ESCRITAS_MS: 800, PORTA_ADMIN: 6,
+               CONFERIR_MS: 4000,                   // 25/11: ler cada canal de volta antes de «gravar»
                TENTATIVAS: 2, RELIGAR_MS: 45000, DEPOIS: ["mqtt"],
                NOME_MAX: 24, PERFIS: ["cao", "bicicleta", "pessoa", "casa"],
                FAROL_VER_MS: 5000 };                // Farol (08/11): de quanto em quanto tempo se pergunta se já se ligou
@@ -15812,6 +15968,15 @@ function adicionarGuardarDefinicao(tipo, bytes) {
   if (!c || c.fio !== 2) return;
   adic.radio[tipo === "config" ? "config" : "modulo"][c.num] = new Uint8Array(c.valor);
 }
+// Modo do Bluetooth que o Geo mostrou ao ligar (Config.bluetooth = 7; mode = 2: 0 ecrã, 1 fixo, 2 sem PIN; fixed_pin = 3)
+function adicionarModoBt() {
+  const b = adic.radio && adic.radio.config && adic.radio.config[7];
+  if (!b) return null;
+  let modo = 0, pin = 0;
+  try { for (const c of pbCampos(b)) { if (c.num === 2 && c.fio === 0) modo = Number(c.valor); if (c.num === 3 && c.fio === 0) pin = Number(c.valor); } }
+  catch (e) { return null; }
+  return { modo, pin };
+}
 function adicionarCaiu() { if (adic.radio) adic.radio.caiu = true; }
 
 function adicionarComChave(sub, k) {
@@ -15918,7 +16083,19 @@ async function adicionarLigar() {
     if (radio.cars || radio.querLigado) await adicionarSoltar();
     const d = await navigator.bluetooth.requestDevice({ filters: [{ services: [RADIO.UUID.servico] }] });
     radioAdotarDispositivo(d); adic.novo = d; radio.querLigado = true; radio.tentativa = 0;
-    await radioConectar();
+    try { await radioConectar(); }
+    catch (e1) {
+      // 25/11/2026: se o Android pediu o PIN a meio, essa ligação fica estragada: fecha-se e abre-se outra, limpa
+      if (adic.passo !== "a_ligar" || String((e1 && e1.message) || "") === "outra_rede") throw e1;
+      console.warn("adicionar um Geo: a 1.ª ligação falhou, a ligar outra vez:", e1);
+      clearTimeout(radio.temporizadorReligar);
+      try { if (d.gatt && d.gatt.connected) d.gatt.disconnect(); } catch (x) { /* nada */ }
+      radio.cars = null; radio.fila = Promise.resolve();
+      await radioEsperar(3000);
+      clearTimeout(radio.temporizadorReligar);
+      if (adic.passo !== "a_ligar") return;
+      if (!radioAtivo()) await radioConectar();
+    }
   } catch (e) {
     if (adic.passo !== "a_ligar") return;
     if (e && e.name === "NotFoundError") { await adicionarLimpar(); adic.passo = "inicio"; adicionarDesenhar(); return; }
@@ -15946,7 +16123,7 @@ async function adicionarPedir(extra) {
     await adicionarLimpar();
     return adicionarErro(r.corpo.erro || t("erro.pedido"));
   }
-  adic.token = r.corpo.token; adic.reconfigurar = !!r.corpo.reconfigurar;
+  adic.token = r.corpo.token; adic.reconfigurar = !!r.corpo.reconfigurar; adic.reparouMqtt = false;
   adic.passo = "a_preparar"; adicionarDesenhar();
   const fim = Date.now() + ADIC.PREPARAR_MS;
   while (Date.now() < fim) {
@@ -15977,13 +16154,33 @@ async function adicionarGravar(tentativa = 1) {
   let cargas;
   try { cargas = adic.plano.map(adicionarCarga); }
   catch (e) {
+    // 25/11/2026: um Geo da própria conta em modo gerido não aceita escritas por Bluetooth: pede-se ao servidor que
+    // o desproteja (o mesmo que «modo avançado» na app); chega-lhe pela ponte ou pelo Farol
+    if (e.message === "gerido" && adic.reconfigurar) {
+      try { await enviar("/api/aparelho/avancado", { node_id: radio.meu.num >>> 0, ligar: true }); } catch (x) { console.warn("adicionar um Geo: desproteger", x); }
+      await adicionarLimpar();
+      return adicionarErro(t("adicionar.erro_gerido_meu"));
+    }
     await adicionarLimpar();
     return adicionarErro(t(e.message === "gerido" ? "adicionar.erro_gerido" : e.message === "chaves_cheias" ? "adicionar.erro_chaves" : "adicionar.erro_definicoes"));
   }
   adic.passo = "a_gravar"; adic.total = cargas.length; adic.progresso = 0; adic.radio.caiu = false; adicionarDesenhar();
   for (let i = 0; i < cargas.length; i++) {
     const ultimo = i === cargas.length - 1;
-    if (ultimo) { adic.radio.caiu = false; adic.radio.config = {}; adic.radio.modulo = {}; }   // depois de gravar, lê-se tudo outra vez
+    if (ultimo) {
+      // 25/11/2026: antes de «gravar», o Geo tem de mostrar os canais da rede. A leitura só chega depois de o Geo
+      // ter tratado todas as escritas anteriores, por isso serve também de confirmação de que já as processou.
+      const erroCanais = await adicionarConferirCanais(cargas).then(() => null, e => e);
+      if (erroCanais) {
+        const motivo = String((erroCanais && erroCanais.message) || erroCanais).slice(0, 80);
+        console.warn("adicionar um Geo: os canais não ficaram antes de gravar:", motivo);
+        adic.falhou = { o: "canais", n: i + 1, total: cargas.length, motivo };
+        if (tentativa < ADIC.TENTATIVAS) return adicionarRepetir(tentativa);
+        await adicionarLimpar();
+        return adicionarErro(t("adicionar.erro_verificar", { falta: t("adicionar.falta_canais") }));
+      }
+      adic.radio.caiu = false; adic.radio.config = {}; adic.radio.modulo = {};
+    }   // depois de gravar, lê-se tudo outra vez
     try {
       if (!ultimo && adic.radio.caiu) throw new Error("a ligação caiu");
       await adicionarEscreverAdmin(cargas[i]);
@@ -16001,6 +16198,30 @@ async function adicionarGravar(tentativa = 1) {
     if (!ultimo) await radioEsperar(ADIC.ENTRE_ESCRITAS_MS);
   }
   return adicionarEsperarReinicio();
+}
+// 25/11/2026: lê do Geo (ainda dentro da transação) cada canal que o plano escreveu e compara papel e nome.
+// O que faltar escreve-se outra vez, uma vez; se continuar a faltar, lança erro (e a transação repete-se toda).
+async function adicionarConferirCanais(cargas) {
+  const esperados = [];
+  adic.plano.forEach((p, k) => {
+    if (!/^canal\d+$/.test(p.o || "")) return;
+    let a; try { a = GeoProto.descodificar("AdminMessage", cargas[k]); } catch (e) { return; }
+    const ch = a && a.set_channel;
+    if (ch) esperados.push({ k, indice: ch.index || 0, papel: ch.role || 0, nome: (ch.settings && ch.settings.name) || "" });
+  });
+  for (let volta = 1; volta <= 2; volta++) {
+    const errados = [];
+    for (const e of esperados) {
+      if (!adic.radio || adic.radio.caiu) throw new Error("a ligação caiu");
+      const c = await canalConfirmar(e.indice, ADIC.CONFERIR_MS);
+      const ok = e.papel === 0 ? (!c || c.papel === 0) : !!(c && c.papel === e.papel && c.nome === e.nome);
+      if (!ok) errados.push(e);
+    }
+    if (!errados.length) return;
+    console.warn(`adicionar um Geo: canais por confirmar (volta ${volta}):`, errados.map(e => e.indice).join(", "));
+    if (volta === 2) throw new Error("canais " + errados.map(e => e.indice).join(", ") + " não ficaram");
+    for (const e of errados) { await adicionarEscreverAdmin(cargas[e.k]); await radioEsperar(ADIC.ENTRE_ESCRITAS_MS); }
+  }
 }
 async function adicionarRepetir(tentativa) {
   adic.passo = "a_religar"; adicionarDesenhar();
@@ -16033,6 +16254,17 @@ async function adicionarEsperarReinicio() {
       return adicionarVerificar();
     }
   }
+  // 25/11/2026: antes de desistir, uma ligação feita à mão; se o Geo responder, confere-se na mesma (os canais
+  // podem já estar gravados: não vale a pena obrigar a repetir tudo)
+  if (adic.passo === "a_reiniciar" && radio.dispositivo && radio.querLigado) {
+    clearTimeout(radio.temporizadorReligar);
+    if (!radioAtivo()) {
+      try { await radioConectar(); } catch (e) { console.warn("adicionar um Geo: a ligação depois do reinício falhou:", e); }
+    } else if (!radio.configCompleta) {
+      try { await radioConfigurar(); } catch (e) { /* confere-se com o que houver */ }
+    }
+    if (adic.passo === "a_reiniciar" && radioAtivo() && radio.configCompleta) return adicionarVerificar();
+  }
   await adicionarLimpar();
   adicionarErro(t("adicionar.erro_reinicio"));
 }
@@ -16044,7 +16276,24 @@ function adicionarVerificado() {
   let chave = false;
   try { chave = !!sub && pbCampos(sub).some(c => c.num === ps.chave_admin.numero && c.fio === 2 && bytesIguais(c.valor, deB64(ps.chave_admin.chave))); } catch (e) { chave = false; }
   return { canais: [0, 1].map(i => (radio.canais[i] && radio.canais[i].nome) || ""), dono: n.nome || "",
-           chave_admin: chave, chave_propria: !!n.chave };
+           chave_admin: chave, chave_propria: !!n.chave, chave_publica: n.publica || null };   // 25/11/2026
+}
+// 25/11/2026: o que nos escapou uma vez. O contacto do servidor (sem ele o Geo não decifra os comandos PKI) escreve-se
+// outra vez se faltar (não reinicia o Geo). Devolve true se o Geo ainda tem o «ignorar MQTT» ligado (LoRaConfig 104).
+async function adicionarRepararDepois() {
+  const ps = adic.plano.find(p => p.chave_admin);
+  const srv = radio.nos.get(RADIO_SERVIDOR);
+  const passo = adic.plano.find(p => p.o === "servidor");
+  if (ps && passo && !(srv && srv.publica === ps.chave_admin.chave)) {
+    try { await adicionarEscreverAdmin(adicionarCarga(passo)); await radioEsperar(ADIC.ENTRE_ESCRITAS_MS); console.warn("adicionar um Geo: contacto do servidor escrito outra vez"); }
+    catch (e) { console.warn("adicionar um Geo: contacto do servidor", e); }
+  }
+  const r2 = adic.plano.find(p => p.o === "radio2");
+  const lora = r2 && adic.radio.config[r2.numero];
+  if (!lora) return false;
+  let ignora = false;
+  try { for (const c of pbCampos(lora)) if (c.num === 104 && c.fio === 0) ignora = !!Number(c.valor); } catch (e) { return false; }
+  return ignora;
 }
 async function adicionarVerificar() {
   adic.passo = "a_confirmar"; adicionarDesenhar();
@@ -16053,6 +16302,23 @@ async function adicionarVerificar() {
   if (v.canais[0] !== "GeoRede" || v.canais[1] !== "GeoCmd") falta.push(t("adicionar.falta_canais"));
   if (v.dono !== adic.nomeLongo) falta.push(t("adicionar.falta_nome_geo"));
   if (!v.chave_admin) falta.push(t("adicionar.falta_chave"));
+  if (!falta.length) {
+    const ignora = await adicionarRepararDepois();
+    if (ignora && !adic.reparouMqtt && adic.passo === "a_confirmar") {
+      // a região escreveu-se pela primeira vez e o firmware ligou o «ignorar MQTT»: escreve-se o rádio outra vez
+      // (fora da transação: o Geo grava e reinicia) e confere-se de novo, uma vez
+      adic.reparouMqtt = true;
+      const i = adic.plano.findIndex(p => p.o === "radio2");
+      try {
+        const carga = adicionarCarga(adic.plano[i]);
+        adic.radio.caiu = false; adic.radio.config = {}; adic.radio.modulo = {};
+        await adicionarEscreverAdmin(carga);
+        console.warn("adicionar um Geo: «ignorar MQTT» ainda ligado; rádio escrito outra vez");
+        return adicionarEsperarReinicio();
+      } catch (e) { console.warn("adicionar um Geo: corrigir o «ignorar MQTT»", e); }
+    }
+    if (ignora) falta.push(t("adicionar.falta_mqtt"));
+  }
   if (falta.length) { await adicionarLimpar(); return adicionarErro(t("adicionar.erro_verificar", { falta: falta.join(", ") })); }
   let r;
   try { r = await enviar("/api/geos/adicionar/confirmar", { token: adic.token, verificado: v }); }
@@ -16221,7 +16487,12 @@ function adicionarDesenhar() {
       if (R.pin) {
         c.append(p(t("adicionar.pin_novo"), "dica"));
         const pin = document.createElement("div"); pin.className = "pin"; pin.id = "adicionar-pin"; pin.textContent = R.pin; c.append(pin);
-      } else c.append(p(t("adicionar.pin_igual"), "dica"));
+      } else {                                                         // o texto certo para o modo do Geo (25/11/2026)
+        const bt = adicionarModoBt();
+        if (bt && bt.modo === 0) c.append(p(t("adicionar.pin_novo_ecra"), "dica"));
+        else if (bt && bt.modo === 1 && bt.pin && bt.pin !== 123456) c.append(p(t("adicionar.pin_mesmo"), "dica"));
+        else if (!bt || bt.modo === 1) c.append(p(t("adicionar.pin_igual"), "dica"));
+      }
       if (R.regiao || adic.regiao) c.append(p(t("adicionar.regiao_feito", { regiao: regiaoNome(R.regiao || adic.regiao) }), "dica"));
       c.append(p(t("adicionar.ceu"), "dica"), b(t("adicionar.concluir"), adicionarConcluir, true));
       break;
@@ -16243,6 +16514,12 @@ const ATU = { INDICE: "/firmware/indice.json", TAMANHO_MAX: 4 * 1024 * 1024, REL
 const atu = { indice: null, pedido: null, falhouEm: 0, passo: "fechado", alvo: null, pct: 0, erro: "", de: "", para: "", nome: "",
               dispositivo: null, zip: null, entrouDfu: false, bateriaFraca: false, desenhado: "" };
 const dfuNativo = () => { const C = window.Capacitor; return (C && C.Plugins && C.Plugins.GeoredeDfu) || null; };
+// A fonte (GPL-3.0) de uma versão do firmware Meshtastic: a release oficial com o mesmo nome (ex.: v2.7.26.54e0d8d)
+function fonteFirmware(versao) {
+  const v = String(versao || "").trim().replace(/^v/i, "");
+  return /^\d+\.\d+\.\d+(\.[0-9a-f]{6,12})?$/.test(v) ? "https://github.com/meshtastic/firmware/releases/tag/v" + v
+                                                     : "https://github.com/meshtastic/firmware/releases";
+}
 function atuNumeros(v) { const m = /^v?(\d+)\.(\d+)\.(\d+)/.exec(String(v || "").trim()); return m ? [+m[1], +m[2], +m[3]] : null; }
 function atuMenor(a, b) { for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] < b[i]; return false; }
 // O pacote do índice que serve o Geo ligado, ou null
@@ -16397,6 +16674,10 @@ function atuDesenhar() {
   switch (atu.passo) {
     case "confirmar": {
       c.append(p(t("atualizar.explica", v)), p(t("atualizar.cuidados"), "dica"), p(t("atualizar.pin"), "dica"));
+      // 25/11/2026 (pedido da Meshtastic): licença GPL-3.0 e a fonte da versão que vamos instalar
+      const lic = p(t("atualizar.licenca") + " ", "dica"), a = document.createElement("a");
+      a.href = fonteFirmware(atu.indice && atu.indice.versao); a.target = "_blank"; a.rel = "noopener";
+      a.textContent = "github.com/meshtastic/firmware"; lic.append(a); c.append(lic);
       if (atu.bateriaFraca) { const av = p(t("adicionar.bateria_fraca"), "aviso"); av.id = "atualizar-bateria"; c.append(av); }
       const bs = document.createElement("div"); bs.className = "botoes";
       bs.append(b(t("atualizar.agora_nao"), atuFechar), b(t("atualizar.comecar"), atuComecar, true));
@@ -17620,35 +17901,35 @@ const RELOGIO = { CHAVE: "georede-raide", CHAVE_REDE: "georede-raide-rede", CHAV
   TXT: {
     pt: { botao: "Atividade", titulo: "Atividade", fechar: "Fechar", comecar: "Começar", terminar: "Terminar", nova: "Nova atividade", nova_mesmo: "Apagar tempos e começar?", por_comecar: "Ainda não começou",
           a_decorrer: "A decorrer desde as {hora}", terminou: "Terminou às {hora}", raio: "Raio do posto (metros)", maximo: "Máximo no posto (minutos)", equipa: "Equipa", andamento: "Em andamento", total: "Total",
-          nota: "Chega ao posto quem fica dentro do raio; sai quem volta a ficar fora. Toca numa casa para acertar a hora e dar os pontos. Toca no nome da equipa para acertar a partida, a chegada final ou os pontos. O tempo parado nos postos não conta para o tempo em andamento.",
+          nota: "Chega ao posto quem fica dentro do raio; sai quem volta a ficar fora. Toca numa casa para acertar a hora e dar os pontos. Toca no nome da equipa para acertar a partida, a chegada final ou os pontos. O tempo parado nos postos não conta para o tempo em andamento. Os Geos dão a posição no máximo de 5 em 5 min a andar: ao chegar a um posto, a equipa carrega duas vezes no botão do Geo e a posição sai logo.",
           sem_equipas: "Ainda não há Geos nesta rede para fazerem de equipas.", sem_postos: "Marca primeiro os postos no mapa (pontos do tipo Posto).", demais: "Há mais de {n} min no posto: {quem}",
           aviso: "{equipa} está há mais de {n} min no {posto}", chegada: "Chegada", saida: "Saída", chegou: "Chegou agora", saiu: "Saiu agora", guardar: "Guardar", limpar: "Limpar esta passagem",
           erro_saida: "A saída não pode ser antes da chegada.", erro_chegada: "Falta a hora de chegada.", ok: "Guardado na tua conta.", pendente: "Por enviar: fica neste aparelho e segue quando houver internet.", ha: "há {n} min", min: "{n} min", posto_curto: "P{n}",
           pontos: "Pontos", pts: "{n} pts", jogo: "Jogo (pontos)", msg: "Mensagem (pontos)", msg_1: "À 1.ª: {n}", msg_2: "À 2.ª: {n}", msg_3: "À 3.ª: {n}", msg_0: "Não acertou: {n}", regras: "Regras dos pontos do tempo", r_duracao: "Duração do raide (minutos)", r_cedo: "Antecipação que dá mais pontos (minutos)", r_pts_cedo: "Pontos por acabar cedo", r_pts_horas: "Pontos por acabar a horas", r_perde: "Pontos que perde por atraso", r_cada: "Por cada (minutos de atraso)", r_resumo: "Em menos de {a}: {p1} pontos. Até {b}: {p2} pontos. Depois, perde {p3} por cada {c} min de atraso, começados. Conta o tempo em andamento, da partida à chegada ao último posto.", lugar: "{n}.º", postos_p: "postos {n}", tempo_p: "tempo {n}", tempo_falta: "tempo: por acabar", ajuste_p: "ajuste {n}", partida: "Partida", meta: "Chegada final", ajuste: "Ajuste de pontos", equipa_nota: "Sem acerto, a partida é o início da atividade e a chegada final é a chegada ao último posto. No ajuste, usa um número negativo para uma penalização (por exemplo -20).", limpar_equipa: "Limpar acertos", erro_meta: "A chegada final não pode ser antes da partida.", erro_pontos: "Os pontos têm de ser um número inteiro entre 0 e 1000.", erro_ajuste: "O ajuste tem de ser um número inteiro entre -10000 e 10000." },
     en: { botao: "Activity", titulo: "Activity", fechar: "Close", comecar: "Start", terminar: "Finish", nova: "New activity", nova_mesmo: "Clear times and start?", por_comecar: "Not started yet",
           a_decorrer: "Running since {hora}", terminou: "Finished at {hora}", raio: "Checkpoint radius (metres)", maximo: "Maximum at checkpoint (minutes)", equipa: "Team", andamento: "Moving", total: "Total",
-          nota: "A team arrives when it is inside the radius and leaves when it is outside again. Tap a cell to correct the time and give points. Tap the team name to correct its start, final arrival or points. Time stopped at checkpoints doesn't count as moving time.",
+          nota: "A team arrives when it is inside the radius and leaves when it is outside again. Tap a cell to correct the time and give points. Tap the team name to correct its start, final arrival or points. Time stopped at checkpoints doesn't count as moving time. Geos send their position at most every 5 min while moving: on reaching a checkpoint, the team presses the Geo's button twice and the position goes out at once.",
           sem_equipas: "There are no Geos in this network yet to act as teams.", sem_postos: "First mark the checkpoints on the map (places of the Checkpoint type).", demais: "More than {n} min at the checkpoint: {quem}",
           aviso: "{equipa} has been at {posto} for more than {n} min", chegada: "Arrival", saida: "Departure", chegou: "Arrived now", saiu: "Left now", guardar: "Save", limpar: "Clear this passage",
           erro_saida: "Departure can't be before arrival.", erro_chegada: "The arrival time is missing.", ok: "Saved to your account.", pendente: "Not sent yet: it stays on this device and goes when there is internet.", ha: "{n} min ago", min: "{n} min", posto_curto: "C{n}",
           pontos: "Points", pts: "{n} pts", jogo: "Game (points)", msg: "Message (points)", msg_1: "1st try: {n}", msg_2: "2nd try: {n}", msg_3: "3rd try: {n}", msg_0: "Not solved: {n}", regras: "Rules for time points", r_duracao: "Raid duration (minutes)", r_cedo: "Early margin that earns more (minutes)", r_pts_cedo: "Points for finishing early", r_pts_horas: "Points for finishing on time", r_perde: "Points lost when late", r_cada: "For every (minutes late)", r_resumo: "Under {a}: {p1} points. Up to {b}: {p2} points. After that, {p3} points are lost for every {c} min late, once started. Moving time counts, from the start to the arrival at the last checkpoint.", lugar: "#{n}", postos_p: "checkpoints {n}", tempo_p: "time {n}", tempo_falta: "time: not finished", ajuste_p: "adjustment {n}", partida: "Start", meta: "Final arrival", ajuste: "Points adjustment", equipa_nota: "With no correction, the start is the start of the activity and the final arrival is the arrival at the last checkpoint. In the adjustment, use a negative number for a penalty (for example -20).", limpar_equipa: "Clear corrections", erro_meta: "The final arrival can't be before the start.", erro_pontos: "Points must be a whole number between 0 and 1000.", erro_ajuste: "The adjustment must be a whole number between -10000 and 10000." },
     es: { botao: "Actividad", titulo: "Actividad", fechar: "Cerrar", comecar: "Empezar", terminar: "Terminar", nova: "Nueva actividad", nova_mesmo: "¿Borrar tiempos y empezar?", por_comecar: "Aún no ha empezado",
           a_decorrer: "En curso desde las {hora}", terminou: "Terminó a las {hora}", raio: "Radio del control (metros)", maximo: "Máximo en el control (minutos)", equipa: "Equipo", andamento: "En marcha", total: "Total",
-          nota: "Llega al control quien queda dentro del radio; sale quien vuelve a quedar fuera. Toca una casilla para corregir la hora y dar los puntos. Toca el nombre del equipo para corregir la salida, la llegada final o los puntos. El tiempo parado en los controles no cuenta como tiempo en marcha.",
+          nota: "Llega al control quien queda dentro del radio; sale quien vuelve a quedar fuera. Toca una casilla para corregir la hora y dar los puntos. Toca el nombre del equipo para corregir la salida, la llegada final o los puntos. El tiempo parado en los controles no cuenta como tiempo en marcha. Los Geos dan la posición como mucho cada 5 min en marcha: al llegar a un control, el equipo pulsa dos veces el botón del Geo y la posición sale enseguida.",
           sem_equipas: "Aún no hay Geos en esta red para hacer de equipos.", sem_postos: "Marca primero los controles en el mapa (puntos del tipo Control).", demais: "Más de {n} min en el control: {quem}",
           aviso: "{equipa} lleva más de {n} min en {posto}", chegada: "Llegada", saida: "Salida", chegou: "Ha llegado ahora", saiu: "Ha salido ahora", guardar: "Guardar", limpar: "Borrar este paso",
           erro_saida: "La salida no puede ser antes de la llegada.", erro_chegada: "Falta la hora de llegada.", ok: "Guardado en tu cuenta.", pendente: "Sin enviar: queda en este aparato y sale cuando haya internet.", ha: "hace {n} min", min: "{n} min", posto_curto: "C{n}",
           pontos: "Puntos", pts: "{n} pts", jogo: "Juego (puntos)", msg: "Mensaje (puntos)", msg_1: "A la 1.ª: {n}", msg_2: "A la 2.ª: {n}", msg_3: "A la 3.ª: {n}", msg_0: "No acertó: {n}", regras: "Reglas de los puntos del tiempo", r_duracao: "Duración del raid (minutos)", r_cedo: "Antelación que da más puntos (minutos)", r_pts_cedo: "Puntos por acabar pronto", r_pts_horas: "Puntos por acabar a tiempo", r_perde: "Puntos que pierde por retraso", r_cada: "Por cada (minutos de retraso)", r_resumo: "En menos de {a}: {p1} puntos. Hasta {b}: {p2} puntos. Después, pierde {p3} por cada {c} min de retraso, empezados. Cuenta el tiempo en marcha, desde la salida hasta la llegada al último control.", lugar: "{n}.º", postos_p: "controles {n}", tempo_p: "tiempo {n}", tempo_falta: "tiempo: sin acabar", ajuste_p: "ajuste {n}", partida: "Salida", meta: "Llegada final", ajuste: "Ajuste de puntos", equipa_nota: "Sin corrección, la salida es el inicio de la actividad y la llegada final es la llegada al último control. En el ajuste, usa un número negativo para una penalización (por ejemplo -20).", limpar_equipa: "Borrar correcciones", erro_meta: "La llegada final no puede ser antes de la salida.", erro_pontos: "Los puntos deben ser un número entero entre 0 y 1000.", erro_ajuste: "El ajuste debe ser un número entero entre -10000 y 10000." },
     fr: { botao: "Activité", titulo: "Activité", fechar: "Fermer", comecar: "Démarrer", terminar: "Terminer", nova: "Nouvelle activité", nova_mesmo: "Effacer les temps et démarrer ?", por_comecar: "Pas encore commencé",
           a_decorrer: "En cours depuis {hora}", terminou: "Terminé à {hora}", raio: "Rayon du poste (mètres)", maximo: "Maximum au poste (minutes)", equipa: "Équipe", andamento: "En marche", total: "Total",
-          nota: "Une équipe arrive quand elle est dans le rayon et repart quand elle en ressort. Touche une case pour corriger l'heure et donner les points. Touche le nom de l'équipe pour corriger son départ, son arrivée finale ou ses points. Le temps arrêté aux postes ne compte pas comme temps de marche.",
+          nota: "Une équipe arrive quand elle est dans le rayon et repart quand elle en ressort. Touche une case pour corriger l'heure et donner les points. Touche le nom de l'équipe pour corriger son départ, son arrivée finale ou ses points. Le temps arrêté aux postes ne compte pas comme temps de marche. Les Geos donnent leur position au plus toutes les 5 min en marche : en arrivant à un poste, l'équipe appuie deux fois sur le bouton du Geo et la position part tout de suite.",
           sem_equipas: "Il n'y a pas encore de Geos dans ce réseau pour faire les équipes.", sem_postos: "Marque d'abord les postes sur la carte (points de type Poste).", demais: "Plus de {n} min au poste : {quem}",
           aviso: "{equipa} est depuis plus de {n} min au {posto}", chegada: "Arrivée", saida: "Départ", chegou: "Arrivée maintenant", saiu: "Partie maintenant", guardar: "Enregistrer", limpar: "Effacer ce passage",
           erro_saida: "Le départ ne peut pas précéder l'arrivée.", erro_chegada: "Il manque l'heure d'arrivée.", ok: "Enregistré sur ton compte.", pendente: "Pas encore envoyé : il reste sur cet appareil et partira dès qu'il y aura internet.", ha: "il y a {n} min", min: "{n} min", posto_curto: "P{n}",
           pontos: "Points", pts: "{n} pts", jogo: "Jeu (points)", msg: "Message (points)", msg_1: "Au 1er essai : {n}", msg_2: "Au 2e essai : {n}", msg_3: "Au 3e essai : {n}", msg_0: "Pas trouvé : {n}", regras: "Règles des points du temps", r_duracao: "Durée du raid (minutes)", r_cedo: "Avance qui rapporte plus (minutes)", r_pts_cedo: "Points pour finir en avance", r_pts_horas: "Points pour finir à l'heure", r_perde: "Points perdus en cas de retard", r_cada: "Par tranche de (minutes de retard)", r_resumo: "En moins de {a} : {p1} points. Jusqu'à {b} : {p2} points. Ensuite, {p3} points perdus par tranche de {c} min de retard, entamée. C'est le temps de marche qui compte, du départ à l'arrivée au dernier poste.", lugar: "{n}e", postos_p: "postes {n}", tempo_p: "temps {n}", tempo_falta: "temps : pas fini", ajuste_p: "ajustement {n}", partida: "Départ", meta: "Arrivée finale", ajuste: "Ajustement des points", equipa_nota: "Sans correction, le départ est le début de l'activité et l'arrivée finale est l'arrivée au dernier poste. Pour l'ajustement, mets un nombre négatif pour une pénalité (par exemple -20).", limpar_equipa: "Effacer les corrections", erro_meta: "L'arrivée finale ne peut pas précéder le départ.", erro_pontos: "Les points doivent être un nombre entier entre 0 et 1000.", erro_ajuste: "L'ajustement doit être un nombre entier entre -10000 et 10000." },
     de: { botao: "Aktivität", titulo: "Aktivität", fechar: "Schließen", comecar: "Starten", terminar: "Beenden", nova: "Neue Aktivität", nova_mesmo: "Zeiten löschen und starten?", por_comecar: "Noch nicht gestartet",
           a_decorrer: "Läuft seit {hora}", terminou: "Beendet um {hora}", raio: "Radius des Postens (Meter)", maximo: "Maximum am Posten (Minuten)", equipa: "Gruppe", andamento: "Unterwegs", total: "Gesamt",
-          nota: "Eine Gruppe kommt an, wenn sie im Radius ist, und geht, wenn sie wieder draußen ist. Tippe auf ein Feld, um die Zeit zu korrigieren und Punkte zu geben. Tippe auf den Gruppennamen, um Start, Zielankunft oder Punkte zu korrigieren. Die Zeit an den Posten zählt nicht als Laufzeit.",
+          nota: "Eine Gruppe kommt an, wenn sie im Radius ist, und geht, wenn sie wieder draußen ist. Tippe auf ein Feld, um die Zeit zu korrigieren und Punkte zu geben. Tippe auf den Gruppennamen, um Start, Zielankunft oder Punkte zu korrigieren. Die Zeit an den Posten zählt nicht als Laufzeit. Die Geos senden ihre Position unterwegs höchstens alle 5 Min.: Am Posten drückt die Gruppe zweimal auf die Taste des Geos, und die Position geht sofort raus.",
           sem_equipas: "In diesem Netz gibt es noch keine Geos als Gruppen.", sem_postos: "Markiere zuerst die Posten auf der Karte (Punkte vom Typ Posten).", demais: "Mehr als {n} Min. am Posten: {quem}",
           aviso: "{equipa} ist seit mehr als {n} Min. am {posto}", chegada: "Ankunft", saida: "Abgang", chegou: "Jetzt angekommen", saiu: "Jetzt gegangen", guardar: "Speichern", limpar: "Diesen Durchgang löschen",
           erro_saida: "Der Abgang kann nicht vor der Ankunft liegen.", erro_chegada: "Die Ankunftszeit fehlt.", ok: "In deinem Konto gespeichert.", pendente: "Noch nicht gesendet: bleibt auf diesem Gerät und geht raus, sobald es Internet gibt.", ha: "vor {n} Min.", min: "{n} Min.", posto_curto: "P{n}",
@@ -18452,6 +18733,230 @@ async function libertacaoEsquecer() {
         b.addEventListener("click", () => B.abrirDefinicoes().catch(() => null)); c.append(b);
       }
     }
+  };
+})();
+</script>
+<script>
+// ---- Libertar: no ✓, «desliga o Geo e volta a ligá-lo» (25/11/2026; o L1 Pro ficava a meio até ser reiniciado à mão)
+(function () {
+  const desenhar = libertacaoDesenhar;
+  libertacaoDesenhar = function () {
+    desenhar();
+    const r = libertacao.r, c = document.getElementById("libertacao-corpo");
+    if (!c || !r || r.estado !== "feito" || c.querySelector(".desliga-liga")) return;
+    const p = document.createElement("p"); p.className = "aviso desliga-liga"; p.textContent = t("libertacao.desliga_liga");
+    const depois = c.children[1];                       // logo a seguir ao ✓ e à frase «está livre»
+    if (depois && depois.nextSibling) c.insertBefore(p, depois.nextSibling); else c.append(p);
+  };
+})();
+</script>
+<style>
+/* ---- Palco ao adicionar e ao libertar um Geo (25/11/2026): uma cena por fase, barra de 5 fases, segurar para libertar */
+.palco-bloco { display: grid; gap: 10px; }
+.palco-fases { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.palco-fases i { height: 4px; border-radius: 2px; background: var(--linha); }
+.palco-fases i.feito { background: var(--verde, #2E9E6B); }
+.palco-fases i.atual { background: var(--foco, #7FB0F5); animation: palco-respira 1.6s ease-in-out infinite; }
+.palco-fases.mal i.atual { background: #FB923C; animation: none; }
+.palco-fase { font-size: 13px; color: var(--tinta-2); margin: 0; }
+.palco { position: relative; height: 220px; border-radius: 22px; overflow: hidden; border: 1px solid var(--nevoa);
+  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--azul) 18%, var(--painel)) 0%, var(--painel) 72%);
+  display: flex; align-items: center; justify-content: center; }
+.palco svg { display: block; }
+.palco .geo { position: relative; width: 96px; height: 96px; flex: none; }
+.palco .geo .anel { position: absolute; inset: 0; border-radius: 50%; border: 3px dotted var(--foco, #7FB0F5); }
+.palco .geo .corpo-geo { position: absolute; inset: 14px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: #fff; background: var(--azul); }
+.palco .geo.apagado .anel { border-style: dashed; border-color: var(--linha); }
+.palco .geo.apagado .corpo-geo { background: var(--nevoa); color: var(--tinta-2); }
+.palco .geo.verde .anel { border-color: var(--verde, #2E9E6B); }
+.palco .geo.verde .corpo-geo { background: var(--verde, #2E9E6B); }
+.palco .geo.livre .anel { border-color: transparent; }
+.palco .geo.livre .corpo-geo { background: var(--nevoa); color: var(--tinta); }
+.palco .gira .anel { animation: palco-gira 12s linear infinite; }
+.palco .gira-ao-contrario .anel { animation: palco-gira 6s linear infinite reverse, palco-dissolve 3s ease-in forwards; }
+.palco .respira { animation: palco-respira 2.4s ease-in-out infinite; }
+.palco .pisca .corpo-geo { animation: palco-apaga 3s ease-in-out infinite; }
+.palco .cai { animation: palco-cai .9s cubic-bezier(.2,.9,.3,1.2) both; }
+.palco .tel { position: absolute; left: 34px; top: 62px; }
+.palco .ondas { position: absolute; left: 34px; top: 76px; width: 40px; height: 40px; }
+.palco .ondas i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--foco, #7FB0F5); opacity: 0; animation: palco-onda 2.4s ease-out infinite; }
+.palco .ondas i:nth-child(2) { --d: .8s; } .palco .ondas i:nth-child(3) { --d: 1.6s; }
+.palco .lado { position: absolute; right: 38px; top: 62px; }
+.palco .pecas { position: absolute; left: 14px; top: 8px; bottom: 8px; display: grid; gap: 6px; align-content: center; justify-items: start; }
+.palco .pecas.saem { left: auto; right: 14px; }
+.palco .peca { font-size: 13px; font-weight: 600; padding: 5px 12px; line-height: 1.3; border-radius: 999px; color: var(--tinta);
+  background: color-mix(in srgb, var(--foco, #7FB0F5) 22%, var(--painel)); border: 1px solid color-mix(in srgb, var(--foco, #7FB0F5) 55%, var(--painel));
+  opacity: 0; animation: palco-entra 3.5s ease-in-out infinite both; }
+.palco .pecas.saem .peca { animation-name: palco-sai; }
+.palco .peca:nth-child(2) { --d: .7s; } .palco .peca:nth-child(3) { --d: 1.4s; }
+.palco .peca:nth-child(4) { --d: 2.1s; } .palco .peca:nth-child(5) { --d: 2.8s; }
+/* A página redesenha o ecrã a cada passo (0,8 s): cada animação continua de onde ia (--t = segundos desde que a cena
+   começou), em vez de voltar ao início. Sem isto só se via a primeira peça a acender e a apagar. */
+.palco *, .palco-fases i { animation-delay: calc(var(--d, 0s) - var(--t, 0s)) !important; }
+.palco .visto path { animation-delay: calc(.6s - var(--t, 0s)) !important; }
+.palco .pecas ~ .geo, .palco .pecas.saem ~ .geo { position: absolute; }
+.palco .centro { display: grid; justify-items: center; gap: 10px; }
+.palco .relogio { font: 600 24px/1 ui-monospace, Menlo, monospace; color: var(--tinta); font-variant-numeric: tabular-nums; }
+.palco .roda { position: absolute; inset: -10px; animation: palco-gira 2.2s linear infinite; }
+.palco .visto path { stroke-dasharray: 60; stroke-dashoffset: 60; opacity: 0; animation: palco-pinta .8s ease-out forwards; }
+.palco .corte { display: flex; align-items: center; gap: 14px; }
+.palco .pin-geo { width: 190px; height: 104px; border-radius: 20px; border: 3px solid var(--tinta-2); background: var(--painel);
+  display: grid; place-items: center; }
+.palco .pin-geo div { width: 150px; height: 64px; border-radius: 10px; background: #0B1016; display: grid; place-items: center; align-content: center; gap: 2px; }
+.palco .pin-geo small { font-size: 11px; color: #9AA7B6; }
+.palco .pin-geo b { font: 700 24px ui-monospace, Menlo, monospace; letter-spacing: 3px; color: #7FB0F5; }
+@keyframes palco-onda { 0% { transform: scale(.4); opacity: .9 } 100% { transform: scale(2.8); opacity: 0 } }
+@keyframes palco-respira { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+@keyframes palco-gira { to { transform: rotate(360deg) } }
+@keyframes palco-apaga { 0%, 100% { opacity: 1 } 40%, 60% { opacity: .15 } }
+@keyframes palco-cai { 0% { transform: translateY(-60px); opacity: 0 } 60% { transform: translateY(4px); opacity: 1 } 100% { transform: none } }
+@keyframes palco-pinta { 0% { stroke-dashoffset: 60; opacity: 1 } 100% { stroke-dashoffset: 0; opacity: 1 } }
+@keyframes palco-dissolve { to { opacity: .15 } }
+@keyframes palco-entra { 0% { transform: translateX(0); opacity: 0 } 25% { opacity: 1 } 60% { transform: translateX(40px); opacity: 1 } 100% { transform: translateX(170px) scale(.5); opacity: 0 } }
+@keyframes palco-sai { 0% { transform: translateX(-150px) scale(.5); opacity: 0 } 30% { opacity: 1; transform: translateX(-40px) } 100% { transform: translateX(40px); opacity: 0 } }
+@media (prefers-reduced-motion: reduce) {
+  .palco *, .palco-fases i { animation: none !important; }
+  .palco .peca { opacity: 1; } .palco .ondas i { opacity: .4; } .palco .visto path { stroke-dashoffset: 0; opacity: 1; }
+}
+/* bola de sabão (libertar) */
+.palco .bolha { position: absolute; inset: -10px; border-radius: 50%; z-index: 1; pointer-events: none;
+  border: 1.5px solid rgba(255,255,255,.55);
+  background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.75) 0 5%, transparent 11%),
+              radial-gradient(circle at 70% 76%, rgba(255,255,255,.25) 0 4%, transparent 9%),
+              radial-gradient(circle, transparent 58%, rgba(127,176,245,.22) 82%, rgba(236,72,153,.22) 100%);
+  box-shadow: inset 0 0 16px rgba(127,176,245,.45), inset -7px -9px 18px rgba(236,72,153,.28), inset 8px 6px 16px rgba(46,158,107,.25);
+  animation: palco-bolha 1.7s ease-in forwards; }
+.palco .gota { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px; border-radius: 50%; z-index: 1;
+  background: rgba(200,225,255,.85); opacity: 0; animation: palco-gota .7s ease-out forwards; --d: 1.38s; }
+.palco .desbota .corpo-geo { animation: palco-desbota 1.7s ease-in forwards; }
+.palco .desbota .anel { display: none; }
+.palco .bolha-cena .visto path { animation-delay: calc(1.8s - var(--t, 0s)) !important; }
+@keyframes palco-bolha { 0% { transform: scale(1); opacity: 1 } 30% { transform: scale(1.14, 1.06) } 50% { transform: scale(1.06, 1.16) }
+  70% { transform: scale(1.22, 1.18) } 80% { transform: scale(1.3); opacity: 1 } 84% { transform: scale(1.42); opacity: 0 } 100% { transform: scale(1.42); opacity: 0 } }
+@keyframes palco-gota { 0% { opacity: 1; transform: rotate(var(--a)) translateY(-58px) scale(1) } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-92px) scale(.3) } }
+@keyframes palco-desbota { 0%, 70% { background: var(--verde, #2E9E6B); color: #fff } 100% { background: var(--nevoa); color: var(--tinta) } }
+@media (prefers-reduced-motion: reduce) { .palco .bolha, .palco .gota { display: none; } }
+/* segurar para libertar */
+button.segurar { position: relative; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
+button.segurar .enche { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: rgba(255,255,255,.28); pointer-events: none; }
+button.segurar.a-segurar .enche { transition: transform 1.2s linear; transform: scaleX(1); }
+button.segurar span.rotulo { position: relative; }
+.segurar-dica { font-size: 13px; color: var(--tinta-2); margin: 4px 0 0; }
+</style>
+<script>
+// ---- Palco ao adicionar e ao libertar um Geo (25/11/2026; desenho aprovado: «GEOREDE · Adicionar e Remover um Geo da conta»)
+// Só muda o que se vê: a ordem, as esperas e as verificações continuam as de cima.
+(function () {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const TEL = '<svg class="tel" width="40" height="70" viewBox="0 0 40 70" aria-hidden="true"><rect x="2" y="2" width="36" height="66" rx="8" fill="var(--painel)" stroke="currentColor" stroke-width="3"/><circle cx="20" cy="58" r="2.5" fill="currentColor"/></svg>';
+  const iniciais = n => {                                   // «GeoM» -> GM, «Rex» -> RE, «GE0X1» -> G0
+    const l = String(n || "").replace(/^GEOREDE\s+/i, "").replace(/\s+/g, "").trim();
+    const x = /^geo./i.test(l) && l.length > 3 ? l[0] + l[3] : l.slice(0, 2);
+    return esc((x || "GE").toUpperCase()); };
+  const geo = (classes, texto, extra) => `<div class="geo ${classes}">${extra || ""}<div class="anel"></div><div class="corpo-geo">${texto}</div></div>`;
+  const pecas = (saem, nomes) => `<div class="pecas${saem ? " saem" : ""}" aria-hidden="true">${nomes.map(x => `<span class="peca">${x}</span>`).join("")}</div>`;
+  const VISTO = '<svg class="visto" width="56" height="40" viewBox="0 0 56 40" aria-hidden="true"><path d="M6 21 L20 34 L50 6" fill="none" stroke="var(--verde, #2E9E6B)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const RODA = '<svg class="roda" viewBox="0 0 116 116" aria-hidden="true"><circle cx="58" cy="58" r="54" fill="none" stroke="var(--linha)" stroke-width="5"/><circle cx="58" cy="58" r="54" fill="none" stroke="var(--foco, #7FB0F5)" stroke-width="5" stroke-linecap="round" stroke-dasharray="80 400"/></svg>';
+  const CORTE = '<svg width="64" height="30" viewBox="0 0 64 30" aria-hidden="true"><path d="M2 15H22M42 15H62" stroke="var(--linha)" stroke-width="4" stroke-linecap="round"/><path d="M27 6L37 24M37 6L27 24" stroke="#FB923C" stroke-width="4" stroke-linecap="round"/></svg>';
+  const telLado = (geoHtml) => `<div class="ondas" aria-hidden="true"><i></i><i></i><i></i></div>${TEL}<div class="lado">${geoHtml}</div>`;
+  const relogios = {};                                      // cena -> quando começou (ms)
+  function tempoDe(chave) {
+    for (const k of Object.keys(relogios)) if (k !== chave && k.split(":")[0] === chave.split(":")[0]) delete relogios[k];
+    if (!relogios[chave]) relogios[chave] = Date.now();
+    return ((Date.now() - relogios[chave]) / 1000).toFixed(2) + "s";
+  }
+  function cena(html, chave) {
+    const d = document.createElement("div"); d.className = "palco"; d.setAttribute("aria-hidden", "true"); d.style.color = "var(--tinta-2)";
+    d.style.setProperty("--t", tempoDe(chave)); d.innerHTML = html; return d;
+  }
+  function fases(atual, mal) {
+    const b = document.createElement("div"); b.className = "palco-bloco";
+    const f = document.createElement("div"); f.className = "palco-fases" + (mal ? " mal" : ""); f.setAttribute("aria-hidden", "true");
+    f.style.setProperty("--t", tempoDe("fases:" + atual));
+    ESPERA_FASES.forEach((x, i) => { const s = document.createElement("i"); if (i < atual) s.className = "feito"; else if (i === atual) s.className = "atual"; f.append(s); });
+    const p = document.createElement("p"); p.className = "palco-fase"; p.setAttribute("aria-current", "step");
+    p.textContent = (atual + 1) + "/" + ESPERA_FASES.length + " · " + t("espera." + ESPERA_FASES[Math.max(0, atual)][0]);
+    b.append(f, p); return b;
+  }
+  let relogioId = null;
+  function relogio() {
+    clearInterval(relogioId);
+    const el = document.getElementById("palco-relogio"); if (!el || !adic.palcoDesde) return;
+    const pinta = () => { const s = Math.max(0, Math.round((Date.now() - adic.palcoDesde) / 1000)); el.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+    pinta(); relogioId = setInterval(() => { if (!document.getElementById("palco-relogio")) { clearInterval(relogioId); return; } pinta(); }, 1000);
+  }
+  // Adicionar
+  adicionarEspera = function (c) {
+    const passo = adic.passo, ini = iniciais(adic.nome);
+    if (passo !== "a_reiniciar") adic.palcoDesde = null; else if (!adic.palcoDesde) adic.palcoDesde = Date.now();
+    if (passo === "feito" || passo === "farol_ligado") {
+      c.append(fases(ESPERA_FASES.length - 1, false));
+      c.lastChild.querySelectorAll(".palco-fases i").forEach(i => i.className = "feito");
+      c.append(cena(`<div class="centro"><div class="cai">${geo("verde", ini)}</div>${VISTO}</div>`, "adic:feito")); return;
+    }
+    if (passo === "erro") {
+      c.append(cena(`<div class="corte">${TEL.replace('class="tel"', '')}${CORTE}${geo("apagado respira", ini)}</div>`, "adic:erro")); return;
+    }
+    const atual = ESPERA_FASES.findIndex(f => f[1].includes(passo));
+    if (atual < 0) return;
+    c.append(fases(atual, false));
+    let h;
+    if (passo === "a_ligar") h = telLado(geo("apagado respira", ini));
+    else if (passo === "a_pedir" || passo === "a_preparar") h = telLado(geo("gira", ini));
+    else if (passo === "a_gravar" || passo === "a_religar") h = pecas(false, ["GeoRede", "GeoCmd", "LoRa · MQTT", "GEOREDE", "🔑"]) + `<div class="lado">${geo("gira", ini)}</div>`;
+    else if (passo === "a_reiniciar") h = `<div class="centro">${geo("pisca", ini, RODA)}<div class="relogio" id="palco-relogio">0:00</div></div>`;
+    else h = `<div class="centro">${geo("gira", ini)}</div>`;
+    c.append(cena(h, "adic:" + atual));
+    if (passo === "a_reiniciar") setTimeout(relogio, 0);
+    if (atual >= 2 && passo !== "a_gravar") { const p = document.createElement("p"); p.className = "espera-nao"; p.textContent = t("espera.nao_feches"); c.append(p); }
+  };
+  // Libertar: a cena por cima do texto de sempre; sem o Geo ligado à app, diz como o pedido chega lá
+  const desenhar = libertacaoDesenhar;
+  libertacaoDesenhar = function () {
+    desenhar();
+    const c = document.getElementById("libertacao-corpo"); if (!c) return;
+    const r = libertacao.r || { estado: "pendente", passo: 0 };
+    const ini = iniciais(libertacao.nome);
+    const velha = c.querySelector(":scope > .espera"); if (velha) velha.remove();
+    let h, k;
+    k = r.estado === "feito" ? "feito" : (r.estado === "falhou" || r.estado === "cancelado") ? "mal" : (r.estado === "enviado" || (r.passo || 0) > 0) ? "sai" : "espera";
+    // 25/11/2026: o anel da rede é uma bola de sabão que rebenta; o Geo desbota de verde para cinzento
+    if (r.estado === "feito") h = `<div class="centro bolha-cena">${geo("livre desbota", ini,
+        '<div class="bolha"></div>' + [0, 60, 120, 180, 240, 300].map(a => `<i class="gota" style="--a:${a}deg"></i>`).join(""))}${VISTO}</div>`;
+    else if (r.estado === "falhou" || r.estado === "cancelado") h = `<div class="corte">${geo("verde", ini)}${CORTE}</div>`;
+    else if (r.estado === "enviado" || (r.passo || 0) > 0) h = `<div class="lado" style="left:40px;right:auto">${geo("verde gira-ao-contrario", ini)}</div>` + pecas(true, ["GeoRede", "GeoCmd", "MQTT", "🔑"]);
+    else h = telLado(geo("verde respira", ini));
+    c.prepend(cena(h, "lib:" + k));
+    const ligado = radioAtivo() && radio.meu && (radio.meu.num >>> 0) === (libertacao.node >>> 0);
+    if (r.estado === "pendente" && !(r.passo > 0) && !ligado && !c.querySelector(".liga-o-geo")) {
+      const p = document.createElement("p"); p.className = "aviso liga-o-geo"; p.textContent = t("libertacao.liga_o_geo");
+      const depois = c.children[1]; if (depois && depois.nextSibling) c.insertBefore(p, depois.nextSibling); else c.append(p);
+    }
+  };
+  // Segurar para libertar (1,2 s). Com o teclado, Enter/Espaço confirmam logo (é sempre um gesto deliberado).
+  const caixa = caixaConfirmar;
+  caixaConfirmar = function (a) {
+    const c = caixa(a);
+    const libertar = aConfirmar && (aConfirmar.acao === "libertar" || aConfirmar.acao === "perdido");
+    const sim = libertar && c.querySelector("button.confirmar");
+    if (!sim) return c;
+    const novo = sim.cloneNode(false); novo.classList.add("segurar");
+    novo.innerHTML = '<span class="enche"></span><span class="rotulo"></span>';
+    novo.querySelector(".rotulo").textContent = sim.textContent;
+    const dica = document.createElement("p"); dica.className = "segurar-dica"; dica.id = "segurar-dica"; dica.textContent = t("libertar.segurar");
+    novo.setAttribute("aria-describedby", "segurar-dica");
+    let tempo = null;
+    const larga = () => { clearTimeout(tempo); tempo = null; novo.classList.remove("a-segurar"); };
+    const vai = () => { larga(); if (navigator.vibrate) try { navigator.vibrate(30); } catch (e) { /* nada */ } pedirEstado(a, aConfirmar.acao, true, novo); };
+    novo.addEventListener("pointerdown", e => { if (e.button > 0) return; e.preventDefault(); novo.setPointerCapture && novo.setPointerCapture(e.pointerId);
+      novo.classList.add("a-segurar"); tempo = setTimeout(vai, 1200); });
+    for (const ev of ["pointerup", "pointercancel", "pointerleave", "lostpointercapture"]) novo.addEventListener(ev, () => { if (tempo) larga(); });
+    novo.addEventListener("contextmenu", e => e.preventDefault());
+    novo.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); vai(); } });
+    sim.replaceWith(novo);
+    const botoes = novo.parentElement; botoes.after(dica);
+    return c;
   };
 })();
 </script>

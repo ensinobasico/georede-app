@@ -10,7 +10,27 @@ A app fala com os Geos pelo protocolo Meshtastic. A tabela de mensagens `ESQ` em
 - https://github.com/meshtastic/protobufs — GPL-3.0, © Meshtastic LLC e contribuidores.
 
 O codificador (`GeoProto`) e o leitor de protobuf do Android (`PonteNucleo.java`) foram escritos de raiz.
-Meshtastic® é uma marca registada da Meshtastic LLC; a GEOREDE não é afiliada nem apoiada pela Meshtastic LLC.
+O aviso de copyright e de licença da Meshtastic também está no próprio `web/index.html`, por cima da tabela `ESQ`.
+
+Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.
+
+A GEOREDE é um projeto independente, não afiliado nem apoiado pela Meshtastic LLC.
+GEOREDE is an independent project, not affiliated with or endorsed by Meshtastic LLC.
+
+## Firmware dos Geos
+Os Geos usam o firmware Meshtastic® oficial, sem alterações (GPL-3.0). A fonte de cada versão está nas releases do
+Meshtastic, com o mesmo nome da versão:
+
+- 2.7.26.54e0d8d — https://github.com/meshtastic/firmware/releases/tag/v2.7.26.54e0d8d
+
+O servidor da GEOREDE guarda estes ficheiros para a atualização pela app, em `/firmware/`, junto da licença
+(`LICENSE-GPL-3.0.txt`) e de um `LEIA-ME.txt` com os links da fonte.
+
+## Suporte
+O suporte dos Geos e da app é dado pela GEOREDE (ola@georede.com). Não contactes o projeto Meshtastic nem os grupos da
+comunidade sobre a GEOREDE.
+Support for GEOREDE devices and the app comes from GEOREDE (ola@georede.com). Please don't contact the Meshtastic project
+or community groups about GEOREDE.
 
 ## Bibliotecas de terceiros
 - **Capacitor** e **@capacitor-community/bluetooth-le**: MIT (instaladas pelo `npm install`, não incluídas aqui).

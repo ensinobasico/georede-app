@@ -1,0 +1,22 @@
+GEOREDE — firmware dos Geos / Geo firmware
+
+PT
+Os ficheiros desta pasta são o firmware Meshtastic® oficial, sem alterações, tal como publicado pelo projeto
+Meshtastic. São software livre, distribuído sob a GNU General Public License, versão 3 (ver LICENSE-GPL-3.0.txt).
+Código-fonte correspondente a cada versão (a mesma versão que o nome da pasta):
+  2.7.26.54e0d8d  https://github.com/meshtastic/firmware/releases/tag/v2.7.26.54e0d8d
+                  https://github.com/meshtastic/firmware/tree/v2.7.26.54e0d8d
+A GEOREDE dá o suporte dos Geos e da app GEOREDE: ola@georede.com. Não contactes o projeto Meshtastic nem os grupos da
+comunidade sobre a GEOREDE.
+
+EN
+The files in this folder are the official, unmodified Meshtastic® firmware, as published by the Meshtastic project.
+They are free software, distributed under the GNU General Public License, version 3 (see LICENSE-GPL-3.0.txt).
+Corresponding source code for each version (the same version as the folder name):
+  2.7.26.54e0d8d  https://github.com/meshtastic/firmware/releases/tag/v2.7.26.54e0d8d
+                  https://github.com/meshtastic/firmware/tree/v2.7.26.54e0d8d
+GEOREDE provides support for GEOREDE devices and the app: ola@georede.com. Please don't contact the Meshtastic project or
+community groups about GEOREDE.
+
+Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.
+GEOREDE is an independent project, not affiliated with or endorsed by Meshtastic LLC.
